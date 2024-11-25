@@ -18,45 +18,107 @@
 
 <div class="project-page">
     <div class="project-header">
-        <a href="index.html#projets" class="back-btn">← Retour aux projets</a>
+        <a href="index.html#projets" class="back-btn"> Retour aux projets</a>
         <h1 class="section-title">KawaiiToys</h1>
     </div>
 
     <div class="project-content">
         <div class="project-main">
-            <div class="project-gallery">
-                <img src="/api/placeholder/600/400" alt="Image principale du projet">
-                <img src="/api/placeholder/600/400" alt="Capture d'écran 1">
-                <img src="/api/placeholder/600/400" alt="Capture d'écran 2">
-                <img src="/api/placeholder/600/400" alt="Capture d'écran 3">
-            </div>
             <div class="project-description">
                 <h2>Description du projet</h2>
-                <p>Description détaillée du projet, expliquant le contexte, les objectifs et les résultats obtenus.</p>
+                <p>
+                    <strong>KawaiiToys</strong> est une plateforme de e-commerce dédiée à la vente de figurines inspirées des univers d’anime et de manga.
+                    L'objectif était de créer une expérience utilisateur engageante et sécurisée tout en assurant une gestion efficace des produits et des commandes via une architecture MVC (Modèle-Vue-Contrôleur).
+                    <br><br>
+                    <strong>Contexte</strong> : Le marché des figurines issues de la culture japonaise est en plein essor. KawaiiToys s'adresse aux passionnés en leur offrant une plateforme spécialisée,
+                    avec des fonctionnalités adaptées à leurs besoins : navigation rapide, sécurité des transactions, et design inspiré des codes visuels des anime et manga.
+                    <br><br>
+                    <strong>Objectifs</strong> :
+                <ul>
+                    <li>Développer une plateforme robuste et évolutive avec l'architecture MVC pour permettre une maintenance et des améliorations futures.</li>
+                    <li>Offrir un processus d'authentification utilisateur sécurisé, protégeant les comptes contre les attaques.</li>
+                    <li>Créer une interface intuitive et un design captivant pour attirer les fans d’anime et de manga.</li>
+                </ul>
+                <strong>Résultats obtenus</strong> : Le site dispose d’une navigation claire et rapide, d’un back-office permettant une gestion simplifiée des produits, et d’un système d’authentification sécurisé qui garantit la protection des données des utilisateurs.
+                </p>
+
                 <h2>Défis techniques</h2>
-                <p>Explication des défis techniques rencontrés et des solutions mises en œuvre.</p>
+                <p>
+                    <strong>1. Mise en place de l’architecture MVC</strong> :
+                    <br>
+                    <em>Défi</em> : Construire une structure permettant de séparer clairement la logique métier, les données, et la présentation, tout en assurant une communication fluide entre ces trois couches.
+                    <br>
+                    <em>Solution</em> :
+                <ul>
+                    <li><strong>Modèle</strong> : Gestion de la base de données, comprenant les produits, utilisateurs, et commandes.</li>
+                    <li><strong>Vue</strong> : Création de pages dynamiques avec des templates adaptés aux univers d’anime/manga.</li>
+                    <li><strong>Contrôleur</strong> : Traitement des requêtes utilisateur, routage efficace, et gestion des interactions entre le modèle et la vue.</li>
+                </ul>
+                <br>
+
+                <strong>2. Authentification sécurisée</strong> :
+                <br>
+                <em>Défi</em> : Protéger les comptes utilisateur contre les attaques courantes comme les tentatives de connexion par dictionnaire (brute force).
+                <br>
+                <em>Solution</em> :
+                <ul>
+                    <li>Utilisation de mots de passe hachés avec une méthode robuste (bcrypt).</li>
+                    <li>Implémentation d’un délai de <strong>3 secondes</strong> entre chaque tentative de connexion, limitant ainsi le nombre d’essais possibles à environ <strong>20 par heure</strong>. Cette approche réduit significativement l’efficacité des attaques par dictionnaire tout en restant acceptable pour les utilisateurs légitimes.</li>
+                </ul>
+                <br>
+
+                <strong>3. Expérience utilisateur et performances</strong> :
+                <br>
+                <em>Défi</em> : Offrir une interface rapide et réactive, malgré des images produits volumineuses et des fonctionnalités dynamiques.
+                <br>
+                <em>Solution</em> :
+                <ul>
+                    <li>Optimisation des images pour réduire leur poids sans compromettre la qualité.</li>
+                    <li>Mise en œuvre d’une mise en cache des pages et ressources statiques.</li>
+                    <li>Conception d’un design responsive pour garantir une utilisation fluide sur tout type d’appareil.</li>
+                </ul>
+                </p>
+
                 <h2>Impact</h2>
-                <p>Description de l'impact du projet et des résultats obtenus.</p>
+                <p>
+                    <strong>1. Pour les utilisateurs</strong> :
+                <ul>
+                    <li>Une navigation intuitive et une expérience sécurisée, rassurant les fans lors de leurs achats.</li>
+                    <li>Un accès rapide à des figurines classées par anime/manga, avec des filtres pratiques pour les retrouver.</li>
+                </ul>
+                <br>
+                <strong>2. Pour l’entreprise</strong> :
+                <ul>
+                    <li>Une plateforme technique solide facilitant la gestion des stocks, commandes et utilisateurs.</li>
+                    <li>Une sécurité renforcée, augmentant la confiance des clients et diminuant les risques liés aux attaques.</li>
+                    <li>La capacité à évoluer avec de nouvelles fonctionnalités grâce à l’architecture modulaire du site.</li>
+                </ul>
+                <br>
+                <strong>3. Pour le marché des figurines</strong> :
+                <ul>
+                    <li>Une visibilité accrue pour des produits spécifiques à l’univers anime/manga.</li>
+                    <li>Une meilleure accessibilité pour les fans, grâce à une plateforme qui combine design captivant et performances.</li>
+                </ul>
+                </p>
             </div>
         </div>
+
 
         <div class="project-details">
             <h3>Détails du projet</h3>
             <ul>
-                <li><strong>Client:</strong> Nom du client</li>
-                <li><strong>Date:</strong> Période de réalisation</li>
-                <li><strong>Rôle:</strong> Votre rôle dans le projet</li>
+                <li><strong>Date:</strong> 08/10/2024-24/11/2024</li>
+                <li><strong>Rôle:</strong> Gestion Produit & Mise en place de structure MVC & Mise en place de la sécurité du site</li>
             </ul>
             <h3>Technologies utilisées</h3>
             <div class="skills">
                 <span class="skill-tag">HTML5</span>
                 <span class="skill-tag">CSS3</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">React</span>
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">MySQL</span>
             </div>
-            <h3>Liens</h3>
-            <p><a href="#" class="btn">Voir le site en ligne</a></p>
-            <p><a href="#" class="btn">Code source</a></p>
+            <h3>Lien</h3>
+            <p><a href="https://webinfo.iutmontp.univ-montp2.fr/~duongr/kawaiiToys/site/web/controleurFrontal.php" class="btn">Voir le site en ligne</a></p>
         </div>
     </div>
 </div>

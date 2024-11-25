@@ -12,14 +12,22 @@
 
 .back-btn {
     display: inline-block;
-    color: #0066cc;
+    color: #a9a9ef;
     text-decoration: none;
     margin-bottom: 2rem;
     font-weight: 500;
+    position: relative;
+    padding-left: 20px;
+}
+
+.back-btn::before {
+    content: '←';
+    position: absolute;
+    left: 0;
     transition: transform 0.3s ease;
 }
 
-.back-btn:hover {
+.back-btn:hover::before {
     transform: translateX(-5px);
 }
 
