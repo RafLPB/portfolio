@@ -7,82 +7,69 @@
     <link rel="stylesheet" href="ressource/css/styles.css">
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#projets">Projets</a></li>
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+<!-- Page d'accueil -->
+<div id="home-page">
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#apropos">À propos</a></li>
+        </ul>
+    </nav>
 
-<header id="accueil">
-    <h1 class="title">Jean Dupont</h1>
-    <p class="subtitle">Développeur Web Créatif</p>
-    <a href="#projets" class="btn">Voir mes projets</a>
-</header>
+    <header id="accueil">
+        <h1 class="title">Rafaël Duong</h1>
+        <p class="subtitle">Développeur Web Créatif</p>
+        <a href="#projets" class="btn">Voir mes projets</a>
+    </header>
 
-<section id="projets">
-    <h2 class="section-title">Mes Projets</h2>
-    <div class="projects">
-        <div class="project-card">
-            <img src="/api/placeholder/400/300" alt="Projet 1" class="project-img">
-            <div class="project-info">
-                <h3 class="project-title">Projet 1</h3>
-                <p>Description du projet avec les technologies utilisées et les défis relevés.</p>
+    <section id="projets">
+        <h2 class="section-title">Mes Projets</h2>
+        <div class="projects">
+            <a href="projet1.html" class="project-card">
+                <img src="ressource/img/vote.png" alt="Projet 1" class="project-img">
+                <div class="project-info">
+                    <h3 class="project-title">Votelia</h3>
+                    <p>Votelia est une application de vote électronique sécurisée, conçue en Java, permettant à une entreprise de mener des référendums en ligne de manière confidentielle et fiable.</p>
+                </div>
+            </a>
+            <a href="projet2.html" class="project-card">
+                <img src="ressource/img/kawaiitoys.png" alt="Projet 2" class="project-img">
+                <div class="project-info">
+                    <h3 class="project-title">KawaiiToys</h3>
+                    <p>KawaiiToys est un site de e-commerce conçu avec une architecture MVC (Modèle-Vue-Contrôleur) pour assurer une structure modulaire et évolutive.</p>
+                </div>
+            </a>
+            <a href="projet3.html" class="project-card">
+                <img src="ressource/img/ndi.png" alt="Projet 3" class="project-img">
+                <div class="project-info">
+                    <h3 class="project-title">Nuit de l'info</h3>
+                    <p>Description du projet avec les technologies utilisées et les défis relevés.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="apropos">
+        <h2 class="section-title">À Propos</h2>
+        <div class="about">
+            <img src="ressource/img/moi.jpg">
+            <p>Je m'appelle Rafaël DUONG, étudiant en deuxième année de BUT Informatique à l’IUT de Montpellier. Passionné par l’univers des technologies, je m’intéresse particulièrement aux réseaux informatiques et à la cybersécurité. Curieux et déterminé, je cherche constamment à approfondir mes connaissances et à relever de nouveaux défis dans ce domaine en pleine évolution. Mes expériences académiques, projets personnels et activités sportives m’ont permis de développer des compétences techniques solides, tout en cultivant un esprit d’équipe et de collaboration.</p>
+            <div class="skills">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">C</span>
             </div>
+            <a href="savoirPlus.html" class="btn">En savoir plus</a>
         </div>
-        <div class="project-card">
-            <img src="/api/placeholder/400/300" alt="Projet 2" class="project-img">
-            <div class="project-info">
-                <h3 class="project-title">Projet 2</h3>
-                <p>Description du projet avec les technologies utilisées et les défis relevés.</p>
-            </div>
-        </div>
-        <div class="project-card">
-            <img src="/api/placeholder/400/300" alt="Projet 3" class="project-img">
-            <div class="project-info">
-                <h3 class="project-title">Projet 3</h3>
-                <p>Description du projet avec les technologies utilisées et les défis relevés.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="apropos">
-    <h2 class="section-title">À Propos</h2>
-    <div class="about">
-        <p>Développeur web passionné avec plus de 5 ans d'expérience dans la création de solutions web innovantes. Spécialisé dans le développement front-end et back-end, je m'efforce de créer des expériences utilisateur exceptionnelles.</p>
-        <div class="skills">
-            <span class="skill-tag">HTML5</span>
-            <span class="skill-tag">CSS3</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">PHP</span>
-            <span class="skill-tag">MySQL</span>
-        </div>
-    </div>
-</section>
-
-<section id="contact">
-    <h2 class="section-title">Contact</h2>
-    <form class="contact-form">
-        <div class="form-group">
-            <input type="text" placeholder="Votre nom" required>
-        </div>
-        <div class="form-group">
-            <input type="email" placeholder="Votre email" required>
-        </div>
-        <div class="form-group">
-            <textarea placeholder="Votre message" required></textarea>
-        </div>
-        <button type="submit" class="btn">Envoyer</button>
-    </form>
-</section>
-
-<footer>
-    <p>&copy; 2024 Jean Dupont. Tous droits réservés.</p>
-</footer>
+    </section>
+    <footer>
+        <p>&copy; 2024 Rafaël Duong. Tous droits réservés.</p>
+    </footer>
+</div>
 </body>
 </html>

@@ -1,0 +1,232 @@
+/* Page projet */
+.project-page {
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+.project-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.back-btn {
+    display: inline-block;
+    color: #0066cc;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #1d1d1f;
+}
+
+/* Contenu du projet */
+.project-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 3rem;
+}
+
+/* Galerie d'images */
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.project-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-gallery img:hover {
+    transform: scale(1.02);
+}
+
+/* Description du projet */
+.project-description {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.project-description section {
+    margin-bottom: 2.5rem;
+}
+
+.project-description h2 {
+    color: #1d1d1f;
+    margin-bottom: 1.2rem;
+    font-size: 1.8rem;
+}
+
+.project-description h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.project-description p {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.project-description ul {
+    list-style-position: inside;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+}
+
+.project-description li {
+    margin-bottom: 0.8rem;
+    color: #555;
+}
+
+/* Détails du projet (sidebar) */
+.project-details {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.project-details h3 {
+    color: #1d1d1f;
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+}
+
+.project-details ul {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.project-details li {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.project-details strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Skills tags */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.skill-tag {
+    background-color: #f5f5f7;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #0066cc;
+    font-weight: 500;
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #004c99;
+}
+
+/* Footer */
+footer {
+    background-color: #1d1d1f;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+/* Code blocks */
+code {
+    background-color: #f5f5f7;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .project-content {
+        grid-template-columns: 1fr;
+    }
+
+    .project-details {
+        position: static;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .project-header,
+    .project-content {
+        padding: 1rem;
+    }
+
+    nav ul {
+        gap: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 1rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .project-description,
+    .project-details {
+        padding: 1.5rem;
+    }
+}

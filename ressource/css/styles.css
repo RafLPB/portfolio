@@ -90,6 +90,10 @@ section {
     margin: 0 auto;
 }
 
+.projects a{
+    text-decoration: none;
+}
+
 .project-card {
     background: white;
     border-radius: 10px;
@@ -121,6 +125,12 @@ section {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+}
+
+.about img{
+    max-width: 350px;
+    height: auto;
+    margin-bottom: 50px;
 }
 
 .skills {

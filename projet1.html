@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet 1 - Portfolio Rafaël Duong</title>
+    <link rel="stylesheet" href="ressource/css/styles.css">
+    <link rel="stylesheet" href="ressource/css/stylesProjet.css"></head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#projets">Projets</a></li>
+        <li><a href="index.html#apropos">À propos</a></li>
+    </ul>
+</nav>
+
+<div class="project-page">
+    <div class="project-header">
+        <a href="index.html#projets" class="back-btn">← Retour aux projets</a>
+        <h1 class="section-title">Votelia</h1>
+    </div>
+
+    <div class="project-content">
+        <div class="project-main">
+            <div class="project-gallery">
+                <img src="/api/placeholder/600/400" alt="Image principale du projet">
+                <img src="/api/placeholder/600/400" alt="Capture d'écran 1">
+                <img src="/api/placeholder/600/400" alt="Capture d'écran 2">
+                <img src="/api/placeholder/600/400" alt="Capture d'écran 3">
+            </div>
+            <div class="project-description">
+                <h2>Description du projet</h2>
+                <section id="contexte">
+                    <h2>Contexte</h2>
+                    <p>
+                        Ce projet vise à simplifier les prises de décisions collectives d'une entreprise grâce à un système de vote électronique sécurisé.
+                        Développé en Java, ce système garantit la confidentialité, l'intégrité et l'efficacité des votes en ligne.
+                    </p>
+                </section>
+
+                <section id="objectifs">
+                    <h2>Objectifs</h2>
+                    <ul>
+                        <li>Assurer la confidentialité des votes grâce à un chiffrement robuste.</li>
+                        <li>Garantir l'intégrité des bulletins et prévenir les votes multiples.</li>
+                        <li>Faciliter le décryptage des résultats globaux avec un traitement efficace.</li>
+                        <li>Offrir une interface simple pour les électeurs et les administrateurs.</li>
+                    </ul>
+                </section>
+
+                <section id="resultats">
+                    <h2>Résultats Obtenus</h2>
+                    <ul>
+                        <li>Implémentation du chiffrement ElGamal pour protéger les votes.</li>
+                        <li>Architecture client-serveur modulaire et bien structurée.</li>
+                        <li>Tests réussis pour valider les performances sous charge élevée.</li>
+                        <li>Propositions d'améliorations pour la sécurité et l'interface.</li>
+                    </ul>
+                </section>
+                <section id="defis">
+                <h2>Défis techniques</h2>
+                <article>
+                    <h3>1. Mise en œuvre du chiffrement ElGamal</h3>
+                    <p>
+                        Gestion des grands nombres et validation des algorithmes de génération de clés,
+                        chiffrement et déchiffrement à l'aide de la bibliothèque <code>BigInteger</code>.
+                    </p>
+                </article>
+                <article>
+                    <h3>2. Communication via Sockets</h3>
+                    <p>
+                        Synchronisation entre clients et serveur avec des threads et un protocole d'échange
+                        clair pour éviter les erreurs et interruptions.
+                    </p>
+                </article>
+                <article>
+                    <h3>3. Validation de l'unicité des votes</h3>
+                    <p>
+                        Mise en place d'une base de données pour enregistrer les identifiants des électeurs
+                        ayant voté, rejetant les votes redondants.
+                    </p>
+                </article>
+                </section>
+                <section id="impact">
+                    <h2>Impact</h2>
+                    <ul>
+                        <li>Confidentialité et intégrité des votes renforcées.</li>
+                        <li>Simplification du processus décisionnel en entreprise.</li>
+                        <li>Base solide pour des extensions futures, telles qu'une authentification renforcée et une interface graphique améliorée.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <div class="project-details">
+            <h3>Détails du projet</h3>
+            <ul>
+                <li><strong>Client:</strong> Nom du client</li>
+                <li><strong>Date:</strong> Période de réalisation</li>
+                <li><strong>Rôle:</strong> Votre rôle dans le projet</li>
+            </ul>
+            <h3>Technologies utilisées</h3>
+            <div class="skills">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React</span>
+            </div>
+            <h3>Liens</h3>
+            <p><a href="#" class="btn">Voir le site en ligne</a></p>
+            <p><a href="#" class="btn">Code source</a></p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Rafaël Duong. Tous droits réservés.</p>
+</footer>
+</body>
+</html>
