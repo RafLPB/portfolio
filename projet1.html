@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet 1 - Portfolio Rafaël Duong</title>
     <link rel="stylesheet" href="ressource/css/styles.css">
-    <link rel="stylesheet" href="ressource/css/stylesProjet.css"></head>
+    <link rel="stylesheet" href="ressource/css/stylesProjet.css">
+</head>
 <body>
 <nav>
     <ul>
@@ -17,93 +18,103 @@
 
 <div class="project-page">
     <div class="project-header">
-        <a href="index.html#projets" class="back-btn"> Retour aux projets</a>
+        <a href="index.html#projets" class="back-btn">Retour aux projets</a>
         <h1 class="section-title">Votelia</h1>
     </div>
 
     <div class="project-content">
         <div class="project-main">
-            <div class="project-gallery">
-                <img src="/api/placeholder/600/400" alt="Image principale du projet">
-                <img src="/api/placeholder/600/400" alt="Capture d'écran 1">
-                <img src="/api/placeholder/600/400" alt="Capture d'écran 2">
-                <img src="/api/placeholder/600/400" alt="Capture d'écran 3">
-            </div>
             <div class="project-description">
                 <h2>Description du projet</h2>
-                <section id="contexte">
-                    <h2>Contexte</h2>
-                    <p>
-                        Ce projet vise à simplifier les prises de décisions collectives d'une entreprise grâce à un système de vote électronique sécurisé.
-                        Développé en Java, ce système garantit la confidentialité, l'intégrité et l'efficacité des votes en ligne.
-                    </p>
-                </section>
+                <p>
+                    <strong>Votelia</strong> est une plateforme de gestion des votes électroniques destinée à simplifier et sécuriser les processus électoraux.
+                    Elle permet l'organisation de votes en ligne de manière transparente, rapide, et avec une grande fiabilité.
+                    <br><br>
+                    <strong>Contexte</strong> : Les processus électoraux traditionnels sont souvent coûteux et sujets à des délais importants.
+                    Avec la digitalisation croissante, une plateforme comme Votelia répond à un besoin de modernisation des votes,
+                    tout en garantissant leur intégrité et leur confidentialité.
+                    <br><br>
+                    <strong>Objectifs</strong> :
+                <ul>
+                    <li>Fournir un système sécurisé et accessible pour des votes électroniques fiables.</li>
+                    <li>Assurer la confidentialité des choix des électeurs et l'intégrité des résultats.</li>
+                    <li>Proposer une interface utilisateur intuitive pour faciliter la participation électorale.</li>
+                </ul>
+                <strong>Résultats obtenus</strong> : Votelia permet de gérer facilement des élections électroniques avec des résultats générés en temps réel.
+                Le système garantit la sécurité des données grâce à des technologies modernes de chiffrement et des protocoles sécurisés.
+                </p>
 
-                <section id="objectifs">
-                    <h2>Objectifs</h2>
-                    <ul>
-                        <li>Assurer la confidentialité des votes grâce à un chiffrement robuste.</li>
-                        <li>Garantir l'intégrité des bulletins et prévenir les votes multiples.</li>
-                        <li>Faciliter le décryptage des résultats globaux avec un traitement efficace.</li>
-                        <li>Offrir une interface simple pour les électeurs et les administrateurs.</li>
-                    </ul>
-                </section>
-
-                <section id="resultats">
-                    <h2>Résultats Obtenus</h2>
-                    <ul>
-                        <li>Implémentation du chiffrement ElGamal pour protéger les votes.</li>
-                        <li>Architecture client-serveur modulaire et bien structurée.</li>
-                        <li>Tests réussis pour valider les performances sous charge élevée.</li>
-                        <li>Propositions d'améliorations pour la sécurité et l'interface.</li>
-                    </ul>
-                </section>
-                <section id="defis">
                 <h2>Défis techniques</h2>
-                <article>
-                    <h3>1. Mise en œuvre du chiffrement ElGamal</h3>
-                    <p>
-                        Gestion des grands nombres et validation des algorithmes de génération de clés,
-                        chiffrement et déchiffrement à l'aide de la bibliothèque <code>BigInteger</code>.
-                    </p>
-                </article>
-                <article>
-                    <h3>2. Communication via Sockets</h3>
-                    <p>
-                        Synchronisation entre clients et serveur avec des threads et un protocole d'échange
-                        clair pour éviter les erreurs et interruptions.
-                    </p>
-                </article>
-                <article>
-                    <h3>3. Validation de l'unicité des votes</h3>
-                    <p>
-                        Mise en place d'une base de données pour enregistrer les identifiants des électeurs
-                        ayant voté, rejetant les votes redondants.
-                    </p>
-                </article>
-                </section>
-                <section id="impact">
-                    <h2>Impact</h2>
-                    <ul>
-                        <li>Confidentialité et intégrité des votes renforcées.</li>
-                        <li>Simplification du processus décisionnel en entreprise.</li>
-                        <li>Base solide pour des extensions futures, telles qu'une authentification renforcée et une interface graphique améliorée.</li>
-                    </ul>
-                </section>
+                <p>
+                    <strong>1. Sécurisation des données sensibles</strong> :
+                    <br>
+                    <em>Défi</em> : Protéger les données des électeurs et garantir que les votes restent confidentiels.
+                    <br>
+                    <em>Solution</em> :
+                <ul>
+                    <li>Implémentation d’un système de chiffrement avancé pour sécuriser les données des votes et des électeurs.</li>
+                    <li>Utilisation de certificats SSL/TLS pour les connexions serveur.</li>
+                </ul>
+                <br>
+
+                <strong>2. Prévention des fraudes</strong> :
+                <br>
+                <em>Défi</em> : Empêcher les votes multiples ou non autorisés.
+                <br>
+                <em>Solution</em> :
+                <ul>
+                    <li>Authentification multi-facteurs pour vérifier l’identité des électeurs.</li>
+                    <li>Enregistrement des sessions de vote avec un système de journalisation pour détecter les anomalies.</li>
+                </ul>
+                <br>
+
+                <strong>3. Accessibilité et fiabilité</strong> :
+                <br>
+                <em>Défi</em> : Créer une plateforme facile à utiliser et résiliente en cas de trafic élevé.
+                <br>
+                <em>Solution</em> :
+                <ul>
+                    <li>Design responsive pour garantir l’accessibilité sur mobiles, tablettes et ordinateurs.</li>
+                    <li>Hébergement sur des serveurs évolutifs avec un système de sauvegardes régulières.</li>
+                </ul>
+                </p>
+
+                <h2>Impact</h2>
+                <p>
+                    <strong>1. Pour les utilisateurs</strong> :
+                <ul>
+                    <li>Participation simplifiée grâce à une plateforme accessible 24/7.</li>
+                    <li>Confiance accrue dans le processus grâce à des mesures de sécurité avancées.</li>
+                </ul>
+                <br>
+                    <strong>2. Pour les organisateurs</strong> :
+                <ul>
+                    <li>Réduction des coûts liés aux infrastructures physiques des votes.</li>
+                    <li>Gestion automatisée des résultats, éliminant les erreurs humaines.</li>
+                </ul>
+                <br>
+                    <strong>3. Pour les processus électoraux</strong> :
+                <ul>
+                    <li>Augmentation du taux de participation grâce à la facilité d’accès.</li>
+                    <li>Rapprochement de la population des institutions par la digitalisation.</li>
+                </ul>
+                </p>
             </div>
         </div>
 
         <div class="project-details">
             <h3>Détails du projet</h3>
             <ul>
-                <li><strong>Client:</strong> Professeur IUT</li>
-                <li><strong>Date:</strong> 10/09/2024-09/01/2025</li>
-                <li><strong>Rôle:</strong> Code Cryptographie/Hachage & Product Owner</li>
+                <li><strong>Date :</strong> 01/09/2024 - 20/11/2024</li>
+                <li><strong>Rôle :</strong> Code Cryptographie/Hachage & Product Owner.</li>
             </ul>
             <h3>Technologies utilisées</h3>
             <div class="skills">
-                <span class="skill-tag">Java</span>
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">PHP</span>
                 <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">JavaScript</span>
             </div>
         </div>
     </div>
