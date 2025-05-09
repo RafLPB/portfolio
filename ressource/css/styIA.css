@@ -1,3 +1,6 @@
+/* styles.css */
+
+/* Reset some default browser styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +14,7 @@ body {
     color: #e0e6ff;
 }
 
+/* Header styles */
 header {
     height: 100vh;
     display: flex;
@@ -23,15 +27,15 @@ header {
     overflow: hidden;
 }
 
-
+/* Navigation styles */
 nav {
     position: fixed;
     width: 100%;
     padding: 1rem;
-    background-color: rgba(10,10,30,0.95);
+    background-color: rgba(10, 10, 30, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,255,0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 255, 0.2);
 }
 
 nav ul {
@@ -45,20 +49,23 @@ nav a {
     text-decoration: none;
     color: #4cc9f0;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 nav a:hover {
     color: #f72585;
-    text-shadow: 0 0 10px rgba(247,37,133,0.5);
+    text-shadow: 0 0 10px rgba(247, 37, 133, 0.5);
+    transform: scale(1.1);
 }
 
+/* Title and subtitle styles */
 .title {
     font-size: 4rem;
     margin-bottom: 1rem;
     background: linear-gradient(45deg, #4cc9f0, #f72585);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .subtitle {
@@ -67,6 +74,7 @@ nav a:hover {
     color: #4cc9f0;
 }
 
+/* Button styles */
 .btn {
     display: inline-block;
     padding: 1rem 2rem;
@@ -86,19 +94,20 @@ nav a:hover {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: all 0.6s;
 }
 
 .btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(76,201,240,0.5);
+    box-shadow: 0 0 20px rgba(76, 201, 240, 0.5);
 }
 
 .btn:hover::before {
     left: 100%;
 }
 
+/* Section styles */
 section {
     padding: 5rem 2rem;
 }
@@ -112,6 +121,7 @@ section {
     -webkit-text-fill-color: transparent;
 }
 
+/* Projects grid styles */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -125,17 +135,17 @@ section {
 }
 
 .project-card {
-    background: linear-gradient(145deg, rgba(30,30,60,0.8), rgba(20,20,50,0.8));
+    background: linear-gradient(145deg, rgba(30, 30, 60, 0.8), rgba(20, 20, 50, 0.8));
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(76,201,240,0.2);
+    box-shadow: 0 10px 30px rgba(76, 201, 240, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid rgba(76,201,240,0.2);
+    border: 1px solid rgba(76, 201, 240, 0.2);
 }
 
 .project-card:hover {
     transform: translateY(-10px) rotate(2deg);
-    box-shadow: 0 15px 40px rgba(247,37,133,0.3);
+    box-shadow: 0 15px 40px rgba(247, 37, 133, 0.3);
 }
 
 .project-img {
@@ -143,6 +153,11 @@ section {
     height: 200px;
     object-fit: cover;
     filter: grayscale(20%) contrast(120%);
+    transition: filter 0.3s ease;
+}
+
+.project-img:hover {
+    filter: grayscale(0%) contrast(100%);
 }
 
 .project-info {
@@ -156,6 +171,7 @@ section {
     color: #4cc9f0;
 }
 
+/* About section styles */
 .about {
     max-width: 800px;
     margin: 0 auto;
@@ -167,9 +183,15 @@ section {
     height: auto;
     margin-bottom: 50px;
     border-radius: 50%;
-    box-shadow: 0 0 50px rgba(76,201,240,0.3);
+    box-shadow: 0 0 50px rgba(76, 201, 240, 0.3);
+    transition: transform 0.3s ease;
 }
 
+.about img:hover {
+    transform: scale(1.05);
+}
+
+/* Skills section styles */
 .skills {
     display: flex;
     flex-wrap: wrap;
@@ -180,14 +202,21 @@ section {
 }
 
 .skill-tag {
-    background-color: rgba(76,201,240,0.1);
+    background-color: rgba(76, 201, 240, 0.1);
     color: #4cc9f0;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
-    border: 1px solid rgba(76,201,240,0.3);
+    border: 1px solid rgba(76, 201, 240, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.skill-tag:hover {
+    background-color: rgba(76, 201, 240, 0.3);
+    transform: scale(1.05);
+}
+
+/* Contact form styles */
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
@@ -200,81 +229,42 @@ section {
 input, textarea {
     width: 100%;
     padding: 0.8rem;
-    background-color: rgba(20,20,50,0.7);
+    background-color: rgba(20, 20, 50, 0.7);
     color: #e0e6ff;
-    border: 1px solid rgba(76,201,240,0.3);
+    border: 1px solid rgba(76, 201, 240, 0.3);
     border-radius: 5px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus, textarea:focus {
     outline: none;
     border-color: #f72585;
-    box-shadow: 0 0 15px rgba(247,37,133,0.3);
+    box-shadow: 0 0 15px rgba(247, 37, 133, 0.3);
 }
 
 textarea {
     height: 150px;
 }
 
+/* Footer styles */
 footer {
-    background-color: rgba(10,10,30,0.9);
+    background-color: rgba(10, 10, 30, 0.9);
     color: #4cc9f0;
     text-align: center;
     padding: 2rem;
     backdrop-filter: blur(10px);
 }
 
-.competence-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.competence-card {
-    background: linear-gradient(145deg, rgba(30,30,60,0.8), rgba(20,20,50,0.8));
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 10px 30px rgba(76,201,240,0.2);
-    border: 1px solid rgba(76,201,240,0.2);
-}
-
-.competence-level {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-}
-.level-acquired-plus {
-    background-color: rgba(76,201,240,0.2);
-    color: #4cc9f0;
-    border: 1px solid rgba(76,201,240,0.4);
-}
-
-.level-acquired {
-    background-color: rgba(76,201,240,0.15);
-    color: #4cc9f0;
-    border: 1px solid rgba(76,201,240,0.3);
-}
-
-.level-progress {
-    background-color: rgba(247,37,133,0.15);
-    color: #f72585;
-    border: 1px solid rgba(247,37,133,0.3);
-}
-
-.competence-title {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: #4cc9f0;
-    text-align: center;
-    margin-top: 60px;
-}
-
-.soft-skills-container .btn {
-    text-align: center;
-}

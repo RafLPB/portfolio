@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compétences DACS - Déploiement d'Applications Communicantes et Sécurisées</title>
+    <link rel="stylesheet" href="ressource/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #0a0a1a;
+            line-height: 1.6;
+            color: #e0e6ff;
+        }
+
+        header {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #4cc9f0, #f72585);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #4cc9f0;
+        }
+
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #4cc9f0, #f72585);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .competence-card {
+            background: linear-gradient(145deg, rgba(30,30,60,0.8), rgba(20,20,50,0.8));
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(76,201,240,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(76,201,240,0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .competence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(247,37,133,0.3);
+        }
+
+        .competence-header {
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .realiser { background-color: rgba(192, 37, 35, 0.8); }
+        .optimiser { background-color: rgba(242, 113, 33, 0.8); }
+        .administrer { background-color: rgba(251, 191, 36, 0.8); }
+        .gerer { background-color: rgba(130, 201, 30, 0.8); }
+        .conduire { background-color: rgba(23, 54, 93, 0.8); }
+        .collaborer { background-color: rgba(38, 38, 38, 0.8); }
+
+        .competence-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .competence-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #4cc9f0;
+        }
+
+        .competence-details {
+            margin-top: 1rem;
+        }
+
+        .competence-level {
+            display: inline-block;
+            background-color: rgba(76,201,240,0.1);
+            color: #4cc9f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(76,201,240,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .acquisition-title {
+            font-size: 1.8rem;
+            margin: 3rem 0 1.5rem;
+            color: #f72585;
+            text-align: center;
+        }
+
+        .acquisition-card {
+            background: linear-gradient(145deg, rgba(30,30,60,0.6), rgba(20,20,50,0.6));
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(76,201,240,0.1);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(76,201,240,0.1);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .acquisition-example {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(76,201,240,0.05);
+            border-left: 3px solid #4cc9f0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #4cc9f0, #f72585);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.6s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(76,201,240,0.5);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        footer {
+            background-color: rgba(10,10,30,0.9);
+            color: #4cc9f0;
+            text-align: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .dacs-focus {
+            border: 2px solid #f72585;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem auto;
+            max-width: 900px;
+            background: linear-gradient(145deg, rgba(30,30,60,0.4), rgba(20,20,50,0.4));
+        }
+
+        .dacs-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #f72585;
+            text-align: center;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .skill-tag {
+            background-color: rgba(76,201,240,0.1);
+            color: #4cc9f0;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(76,201,240,0.3);
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#projets">Projets</a></li>
+        <li><a href="index.html#apropos">À propos</a></li>
+        <li><a href="apprentissage.html">Mes Compétences</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1 class="title">Compétences du parcours DACS</h1>
+    <p class="subtitle">Déploiement d'Applications Communicantes et Sécurisées</p>
+</header>
+
+<section id="competences">
+    <h2 class="section-title">Les compétences du BUT Informatique</h2>
+    <div class="competences-grid">
+        <div class="competence-card">
+            <div class="competence-header realiser">Compétence 1</div>
+            <div class="competence-info">
+                <h3 class="competence-title">Réaliser un développement d'application</h3>
+                <span class="competence-level">Niveau 1 - Acquis ++</span>
+                <p>Développer, concevoir, coder, tester et intégrer une solution informatique pour un client en respectant les besoins décrits et en appliquant les principes algorithmiques.</p>
+                <div class="competence-details">
+                    <p>Apprentissages critiques :</p>
+                    <ul>
+                        <li>Implémenter des conceptions simples</li>
+                        <li>Élaborer des conceptions simples</li>
+                        <li>Faire des essais et évaluer leurs résultats</li>
+                        <li>Développer des interfaces utilisateurs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="competence-card">
+            <div class="competence-header optimiser">Compétence 2</div>
+            <div class="competence-info">
+                <h3 class="competence-title">Optimiser des applications</h3>
+                <span class="competence-level">Niveau 1 - Acquis +</span>
+                <p>Proposer des applications informatiques optimisées en fonction de critères spécifiques (temps d'exécution, précision, consommation de ressources).</p>
+                <div class="competence-details">
+                    <p>Apprentissages critiques :</p>
+                    <ul>
+                        <li>Analyser un problème avec méthode</li>
+                        <li>Comparer des algorithmes pour des problèmes classiques</li>
+                        <li>Formaliser et mettre en œuvre des outils mathématiques</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="competence-card">
+            <div class="competence-header administrer">Compétence 3</div>
+            <div class="competence-info">
+                <h3 class="competence-title">Administrer des systèmes informatiques communicants complexes</h3>
+                <span class="competence-level">Niveau 1 - Acquis -</span>
+                <p>Installer, configurer, mettre à disposition et maintenir en conditions opérationnelles des infrastructures, des services et des réseaux.</p>
+                <div class="competence-details">
+                    <p>Apprentissages critiques :</p>
+                    <ul>
+                        <li>Identifier les différents composants d'un système numérique</li>
+                        <li>Utiliser les fonctionnalités d'un système multi-tâches</li>
+                        <li>Installer et configurer un système d'exploitation</li>
+                        <li>Configurer un poste de travail dans un réseau d'entreprise</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="competence-card">
+            <div class="competence-header gerer">Compétence 4</div>
+            <div class="competence-info">
+                <h3 class="competence-title">Gérer des données de l'information</h3>
+                <span class="competence-level">Niveau 1 - Acquis</span>
+                <p>Concevoir, gérer, administrer et exploiter les données de l'entreprise pour mettre à disposition les informations nécessaires.</p>
+                <div class="competence-details">
+                    <p>Apprentissages critiques :</p>
+                    <ul>
+                        <li>Mettre à jour et interroger une base de données relationnelle</li>
+                        <li>Visualiser des données</li>
+                        <li>Concevoir une base de données relationnelle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="competence-card">
+            <div class="competence-header conduire">Compétence 5</div>
+            <div class="competence-info">
+                <h3 class="competence-title">Conduire un projet</h3>
+                <span class="competence-level">Niveau 1 - Acquis</span>
+                <p>Satisfaire les besoins des utilisateurs, organiser et piloter un projet informatique avec des méthodes classiques ou agiles.</p>
+                <div class="competence-details">
+                    <p>Apprentissages critiques :</p>
+                    <ul>
+                        <li>Appréhender les besoins du client et de l'utilisateur</li>
+                        <li>Mettre en place les outils de gestion de projet</li>
+                        <li>Identifier les acteurs et les phases d'un cycle de développement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="competence-card">
+            <div class="competence-header collaborer">Compétence 6</div>
+            <div class="competence-info">
+                <h3 class="competence-title">Collaborer au sein d'une équipe informatique</h3>
+                <span class="competence-level">Niveau 1 - Acquis</span>
+                <p>Acquérir, développer et exploiter les aptitudes nécessaires pour travailler efficacement dans une équipe informatique.</p>
+                <div class="competence-details">
+                    <p>Apprentissages critiques :</p>
+                    <ul>
+                        <li>Appréhender l'écosystème numérique</li>
+                        <li>Découvrir les aptitudes requises selon les secteurs</li>
+                        <li>Identifier les statuts, fonctions et rôles d'une équipe</li>
+                        <li>Acquérir les compétences interpersonnelles pour le travail en équipe</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="dacs">
+    <h2 class="section-title">Parcours DACS</h2>
+    <div class="dacs-focus">
+        <h3 class="dacs-title">Déploiement d'Applications Communicantes et Sécurisées</h3>
+        <p>Le parcours DACS se concentre sur trois compétences principales de niveau 2 :</p>
+
+        <div class="competences-grid" style="margin-top: 2rem;">
+            <div class="competence-card">
+                <div class="competence-header optimiser">Niveau 2</div>
+                <div class="competence-info">
+                    <h3 class="competence-title">Optimiser</h3>
+                    <p>Sélectionner les algorithmes adéquats pour répondre à un problème donné</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Analyse d'algorithmes</span>
+                        <span class="skill-tag">Complexité</span>
+                        <span class="skill-tag">Optimisation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="competence-card">
+                <div class="competence-header administrer">Niveau 2</div>
+                <div class="competence-info">
+                    <h3 class="competence-title">Administrer</h3>
+                    <p>Déployer des services dans une architecture réseau</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Réseaux</span>
+                        <span class="skill-tag">Sécurité</span>
+                        <span class="skill-tag">Systèmes</span>
+                        <span class="skill-tag">Infrastructure</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="competence-card">
+                <div class="competence-header gerer">Niveau 2</div>
+                <div class="competence-info">
+                    <h3 class="competence-title">Gérer</h3>
+                    <p>Optimiser une base de données, interagir avec une application et mettre en œuvre la sécurité</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Bases de données</span>
+                        <span class="skill-tag">Sécurité des données</span>
+                        <span class="skill-tag">Optimisation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p style="margin-top: 2rem;">Ce parcours est idéal pour ceux qui s'intéressent particulièrement à la cybersécurité, aux infrastructures réseau et à l'optimisation des systèmes informatiques.</p>
+    </div>
+</section>
+
+<section id="acquisition">
+    <h2 class="section-title">Acquisition des compétences</h2>
+
+    <div class="acquisition-card">
+        <h3 class="acquisition-title">Pourquoi le parcours DACS ?</h3>
+        <p>Mon choix du parcours DACS est motivé par ma fascination pour l'univers de la cybersécurité et mon intérêt pour les défis techniques qu'il présente. Malgré la perception de difficulté associée à cette voie, le soutien de mon entourage m'a encouragé à relever ce défi.</p>
+        <p>La découverte des aspects pratiques comme la mise en place d'une pile LAMP au second semestre a confirmé mon attrait pour ce domaine. Pouvoir présenter des projets concrets et impressionnants à mon entourage a été particulièrement gratifiant.</p>
+    </div>
+
+    <div class="acquisition-card">
+        <h3 class="acquisition-title">Compétence 3 : Administrer des systèmes informatiques</h3>
+        <p>Bien que cette compétence soit encore en développement, j'ai pu faire de réels progrès à travers des projets concrets :</p>
+        <div class="acquisition-example">
+            <h4>Dual Boot Ubuntu et Windows</h4>
+            <p>Lors de ma première SAE, j'ai installé un système en dual boot, me permettant d'utiliser à la fois Ubuntu et Windows sur la même machine. Cette expérience m'a initié à la configuration de systèmes d'exploitation.</p>
+        </div>
+        <div class="acquisition-example">
+            <h4>Configuration réseau local</h4>
+            <p>À travers plusieurs travaux dirigés, j'ai appris à configurer un réseau local virtuel en utilisant le logiciel GNS3, élargissant ainsi mes connaissances techniques dans le domaine des réseaux.</p>
+        </div>
+    </div>
+
+    <div class="acquisition-card">
+        <h3 class="acquisition-title">Points forts dans la perspective DACS</h3>
+        <p>Mes compétences actuelles qui seront des atouts pour le parcours DACS :</p>
+        <div class="acquisition-example">
+            <h4>Compétence 1 : Réaliser un développement d'application</h4>
+            <p>Ma logique affinée me permet de concevoir rapidement des applications et de comprendre l'impact de la complexité des algorithmes. J'ai développé une approche systématique qui me permet d'optimiser efficacement mes réalisations.</p>
+        </div>
+        <div class="acquisition-example">
+            <h4>Compétence 6 : Collaborer au sein d'une équipe informatique</h4>
+            <p>Grâce à ma participation à des événements comme la Nuit de l'Info 2023 et la Code Game Jam 2024, j'ai développé une grande flexibilité dans ma méthode de travail et des compétences solides en collaboration d'équipe.</p>
+        </div>
+    </div>
+
+    <div class="acquisition-card">
+        <h3 class="acquisition-title">Objectifs pour renforcer mes compétences DACS</h3>
+        <p>Pour réussir dans le parcours DACS, je dois concentrer mes efforts sur les domaines suivants :</p>
+        <div class="acquisition-example">
+            <h4>Améliorer ma maîtrise des réseaux</h4>
+            <p>Je vais approfondir mes connaissances en configuration de réseaux et en protocoles de communication pour atteindre le niveau 2 de la compétence "Administrer".</p>
+        </div>
+        <div class="acquisition-example">
+            <h4>Renforcer mes compétences en sécurité informatique</h4>
+            <p>Je souhaite développer ma compréhension des concepts de sécurité pour pouvoir mettre en œuvre des solutions robustes dans les applications et systèmes.</p>
+        </div>
+        <div class="acquisition-example">
+            <h4>Optimiser les performances des applications</h4>
+            <p>Je vais approfondir mes connaissances en algorithmes et structures de données pour améliorer l'efficacité des applications que je développe.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Rafaël Duong. Tous droits réservés.</p>
+</footer>
+</body>
+</html>
