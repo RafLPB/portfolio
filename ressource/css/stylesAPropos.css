@@ -1,7 +1,7 @@
 /* Styles spécifiques à la page À propos */
 .about-hero {
     background:
-            linear-gradient(rgba(10,10,30,0.8), rgba(10,10,30,0.8)),
+            linear-gradient(rgba(44,62,80,0.8), rgba(52,73,94,0.8)),
             url('/api/placeholder/1920/600');
     background-size: cover;
     background-position: center;
@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #e0e6ff;
+    color: #2c3e50;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -23,29 +23,30 @@
     width: 100%;
     height: 100%;
     background-image:
-            radial-gradient(#ffffff 1px, transparent 1px),
-            radial-gradient(#ffffff 1px, transparent 1px);
+            radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+            radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px);
     background-size: 50px 50px;
     background-position: 0 0, 25px 25px;
-    opacity: 0.2;
+    opacity: 0.3;
     z-index: 1;
 }
 
 .about-hero h1 {
-    background: linear-gradient(45deg, #4cc9f0, #f72585);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 3rem;
     position: relative;
     z-index: 2;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .about-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 3rem 2rem;
-    background-color: #0a0a1a;
-    color: #e0e6ff;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #2c3e50;
 }
 
 .profile-section {
@@ -59,14 +60,15 @@
 .profile-image {
     width: 100%;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(76,201,240,0.2);
-    filter: grayscale(20%) brightness(90%);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    filter: brightness(95%);
     transition: transform 0.3s, box-shadow 0.3s;
+    border: 5px solid rgba(255, 255, 255, 0.8);
 }
 
 .profile-image:hover {
     transform: scale(1.03);
-    box-shadow: 0 20px 50px rgba(247,37,133,0.3);
+    box-shadow: 0 20px 50px rgba(118, 75, 162, 0.4);
 }
 
 .experience-grid {
@@ -77,23 +79,26 @@
 }
 
 .experience-card {
-    background: linear-gradient(145deg, rgba(30,30,60,0.8), rgba(20,20,50,0.8));
+    background: rgba(255, 255, 255, 0.8);
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(76,201,240,0.2);
-    border: 1px solid rgba(76,201,240,0.2);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
     transition: transform 0.3s, box-shadow 0.3s;
-    color: #e0e6ff;
+    color: #2c3e50;
 }
 
 .experience-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(247,37,133,0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .experience-card h3 {
-    color: #4cc9f0;
+    color: #667eea;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .timeline {
@@ -106,15 +111,15 @@
     margin-bottom: 3rem;
     position: relative;
     padding-left: 2rem;
-    border-left: 2px solid #4cc9f0;
+    border-left: 2px solid #667eea;
 }
 
 .timeline-date {
     position: absolute;
     left: -140px;
-    color: #4cc9f0;
+    color: #667eea;
     font-weight: 500;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .skill-category {
@@ -122,10 +127,12 @@
 }
 
 .skill-category h2 {
-    background: linear-gradient(45deg, #4cc9f0, #f72585);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 1.5rem;
+    font-weight: 700;
 }
 
 .skill-bars {
@@ -134,14 +141,15 @@
 }
 
 .skill-bar {
-    background: rgba(76,201,240,0.1);
+    background: rgba(102, 126, 234, 0.1);
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(76,201,240,0.3);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .skill-progress {
-    background: linear-gradient(45deg, #4cc9f0, #f72585);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     height: 30px;
     display: flex;
     align-items: center;
@@ -149,6 +157,37 @@
     color: white;
     font-weight: 500;
     transition: width 0.5s ease-in-out;
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+/* Ajout d'éléments de style supplémentaires cohérents */
+.about-hero {
+    backdrop-filter: blur(20px);
+}
+
+.profile-section p {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8);
 }
 
 @media (max-width: 768px) {
@@ -169,5 +208,13 @@
 
     .about-hero h1 {
         font-size: 2rem;
+    }
+
+    .about-content {
+        padding: 2rem 1rem;
+    }
+
+    .profile-section p {
+        padding: 1.5rem;
     }
 }
