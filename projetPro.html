@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets Professionnels - Votelia</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* === GLOBAL STYLES === */
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151932;
+            --bg-tertiary: #1e2338;
+            --accent-primary: #00ff88;
+            --accent-secondary: #00d4ff;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --border-color: #27293d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+            height: 60px;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        nav a:hover { color: var(--accent-primary); }
+
+        /* General Typography & Layout */
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        h2, h3, h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; color: var(--accent-primary); }
+
+        /* Project Page Specific */
+        .project-page {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">accueil</a></li>
+        <li><a href="index.html#projets">projets</a></li>
+        <li><a href="savoirPlus.html">à propos</a></li>
+        <li><a href="apprentissage.html">compétences</a></li>
+        <li><a href="contact.html">contact</a></li>
+    </ul>
+</nav>
+
+<div class="project-page">
+    <h1 class="section-title">Mes Projets Professionnels</h1>
+
+    <!-- Internship Section -->
+    <section>
+        <h2>Stage LPMF</h2>
+        <p>
+            Le stage s'est déroulé au lycée Pierre Mendès France, spécialisé dans les formations techniques et professionnelles,
+            axé sur l'amélioration de l'infrastructure informatique.
+        </p>
+        <h3>Analyse des Missions</h3>
+        <ul>
+            <li>Gestion des permissions utilisateurs via Active Directory et GPO</li>
+            <li>Déploiement d'une nouvelle image système sur les postes informatiques</li>
+            <li>Optimisation de l'accès aux imprimantes réseau</li>
+        </ul>
+        <h3>Conclusion</h3>
+        <p>
+            Ce stage a permis d'acquérir des compétences techniques en administration réseau et systèmes tout en mettant en lumière l'importance
+            de la communication et de la documentation dans un service informatique.
+        </p>
+        <h3>Détails du Stage</h3>
+        <ul>
+            <li><strong>Entreprise:</strong> Lycée Pierre Mendès France</li>
+            <li><strong>Date:</strong> Janvier-Avril 2025</li>
+            <li><strong>Rôle:</strong> Responsable Informatique</li>
+        </ul>
+        <h3>Technologies Utilisées</h3>
+        <div class="skills">
+            <span class="skill-tag">Active Directory</span>
+            <span class="skill-tag">GPO</span>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- Alternance Section -->
+    <section>
+        <h2>Alternance chez Perfectys Télécom</h2>
+        <p>
+            Actuellement, je suis en alternance chez Perfectys Télécom, où j'applique mes compétences en développement web et en administration réseau.
+            Voici un aperçu de mes projets et réalisations au sein de l'entreprise.
+        </p>
+
+        <h3>Projets Techniques</h3>
+
+        <h4>Configuration et Maintenance Réseau</h4>
+        <ul>
+            <li>Paramétrage de routeurs, ainsi que de téléphones VOIP.</li>
+            <li>Migration du système de monitoring de Xymon vers Uptime Kuma:</li>
+            <ul>
+                <li>Recherche d'outils open source avec de nombreux tests pour trouver la meilleure solution.</li>
+                <li>Mise en place d'un système de notifications par SMS pour les liens inaccessibles pendant plus de 30 minutes (utilisation d'un webhook et d'un script Python).</li>
+            </ul>
+        </ul>
+
+        <h4>Développement Web et Référencement</h4>
+        <ul>
+            <li>Refonte du portail captif du Wi-Fi invité en utilisant HTML, CSS et JavaScript.</li>
+            <li>Amélioration du référencement du site web de l'entreprise:</li>
+            <ul>
+                <li>Refonte de la page web avec ajout d'avis clients.</li>
+                <li>Demandes à Google pour changer le nom et le logo sur la carte.</li>
+                <li>Mise en place de <strong>Schema.org</strong> et de <strong>JSON-LD LocalBusiness</strong> pour optimiser la visibilité de l'entreprise.</li>
+                <li>Proposition d'afficher les avis Google via API ou en direct sur le site.</li>
+            </ul>
+            <li>Ajout des liens de Facebook et LinkedIn dans les métadonnées.</li>
+        </ul>
+
+        <h4>Développement WordPress</h4>
+        <ul>
+            <li>Installation et migration d'un site vers WordPress.</li>
+            <li>Création d'un thème avec Elementor, intégrant le CSS, le footer et le header.</li>
+            <li>Optimisation de la performance et de la sécurité du site :</li>
+            <ul>
+                <li>Mise en place de plugins essentiels comme Rank Math pour le SEO, Wordfence pour la sécurité, et UpdraftPlus pour les sauvegardes.</li>
+                <li>Utilisation de LiteSpeed Cache pour améliorer la vitesse, ou WP Rocket comme alternative, si nécessaire.</li>
+            </ul>
+        </ul>
+
+        <h3>Formations et Innovation</h3>
+        <ul>
+            <li>Auto-formation sur n8n pour automatiser des processus.</li>
+            <li>Création d'agents d'IA pour effectuer des recherches Google, en utilisant des outils comme SerpApi et Deepseek.</li>
+            <li>Retouches CSS sur Nextcloud et ajout de nouvelles fonctionnalités de sécurité.</li>
+        </ul>
+
+        <h3>Marketing et Collecte d'Avis</h3>
+        <ul>
+            <li>Création d'une campagne d'e-mailing pour récolter des avis clients, à lancer manuellement ou automatiquement via n8n.</li>
+            <li>Utilisation du plugin Trustindex pour afficher les avis Google sur le site web.</li>
+        </ul>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2025 Rafaël Duong. Tous droits réservés.</p>
+</footer>
+</body>
+</html>

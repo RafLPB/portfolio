@@ -3,23 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>En Savoir Plus - Portfolio Jean Dupont</title>
-    <link rel="stylesheet" href="ressource/css/styles.css">
-    <link rel="stylesheet" href="ressource/css/stylesAPropos.css">
+    <title>À Propos - Rafaël Duong</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        /* === GLOBAL STYLES (From index.html) === */
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151932;
+            --bg-tertiary: #1e2338;
+            --accent-primary: #00ff88;
+            --accent-secondary: #00d4ff;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --border-color: #27293d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 60px; /* Account for fixed nav */
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+            height: 60px;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        nav a::before {
+            content: '>';
+            color: var(--accent-primary);
+            opacity: 0;
+            margin-right: 0.5rem;
+            transition: opacity 0.3s;
+        }
+        nav a:hover { color: var(--accent-primary); }
+        nav a:hover::before { opacity: 1; }
+
+        /* General Typography & Layout */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        h2, h3, h4 {
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; }
+
+        /* Tags */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* === "À Propos" (savoirPlus) Page Specific === */
+        .about-header {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .about-header .title { /* h1 */
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .about-header .subtitle { /* p */
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .profile-section iframe {
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: #fff; /* Show PDF background */
+            width: 100%;
+            height: 550px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--bg-primary);
+        }
+        .timeline-date {
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-item h3 { /* Override default h3 */
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .experience-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .experience-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+        }
+        .experience-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* === Responsive === */
+        @media (max-width: 900px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
+            .profile-section iframe {
+                width: 100%;
+                height: 500px;
+            }
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 50px; }
+            nav { height: 50px; padding: 0.5rem 0; }
+            nav ul { gap: 1.5rem; padding: 0 1rem; }
+            nav a { font-size: 0.8rem; }
+            section {
+                padding: 3rem 1rem;
+            }
+            .section-title, .about-header .title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <nav>
     <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="index.html#projets">Projets</a></li>
-        <li><a href="index.html#apropos">À propos</a></li>
-        <li><a href="apprentissage.html">Mes Compétences</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html">accueil</a></li>
+        <li><a href="index.html#projets">projets</a></li>
+        <li><a href="savoirPlus.html">à propos</a></li>
+        <li><a href="apprentissage.html">compétences</a></li>
+        <li><a href="contact.html">contact</a></li>
     </ul>
 </nav>
 
-<header>
+<header class="about-header">
     <div>
         <h1 class="title">Rafaël DUONG</h1>
         <p class="subtitle">Étudiant en BUT Informatique | Passionné par les réseaux et la cybersécurité</p>
@@ -29,19 +267,22 @@
 <div class="about-content">
     <section class="profile-section">
         <div>
-            <iframe src="ressource/img/Duong-CV-ALTERNANCE-2.pdf"  width="110%" height="550px"></iframe>
+            <iframe src="ressource/img/Duong-CV-ALTERNANCE-2.pdf"></iframe>
         </div>
         <div>
             <h2>À propos de moi</h2>
             <p>
                 Je m'appelle Rafaël, je suis étudiant en deuxième année de BUT Informatique à l’IUT de Montpellier. Ce que j’aime dans l’informatique, ce ne sont pas seulement les lignes de code ou les réseaux, c’est tout ce qu’on peut construire ensemble avec les autres. J’ai une vraie passion pour les technologies liées aux réseaux et à la cybersécurité, mais ce qui me motive encore plus, c’est de les explorer en équipe, dans un cadre humain et stimulant.
-                <br><br></p><p>
+            </p>
+            <p>
                 L’exemple le plus marquant pour moi, c’est la Nuit de l’Info. Une nuit blanche, des idées qui fusent, des contraintes à respecter, une vraie course contre la montre… et au bout, la victoire au défi national. Ce qui a fait la différence ce soir-là ? Notre capacité à collaborer, à communiquer, à garder notre énergie et notre bonne humeur malgré la pression. C’est dans ces moments-là que je me sens à ma place : quand il faut fédérer, proposer, écouter, et faire avancer un projet collectif.
-            <br><br></p><p>
+            </p>
+            <p>
                 On me dit souvent que je suis extraverti, positif et à l’écoute, et je pense que ce sont ces qualités qui m’aident à créer de bons liens avec les autres et à travailler efficacement en groupe. J’aime comprendre les gens, valoriser leurs idées et les faire se sentir impliqués.
-            <br><br></p><p>
+            </p>
+            <p>
                 Aujourd’hui, je cherche à continuer à apprendre dans des environnements où l’aspect humain compte autant que la technique. Je suis toujours partant pour de nouveaux projets, stages ou collaborations où je pourrai m’investir pleinement, progresser, et contribuer à des défis qui ont du sens.
-            <br><br></p>
+            </p>
 
             <h3>Mes valeurs</h3>
             <p>
@@ -59,7 +300,7 @@
     </section>
 
     <section>
-        <h2>Parcours Académique</h2>
+        <h2 class="section-title">Parcours Académique</h2>
         <div class="timeline">
             <div class="timeline-item">
                 <span class="timeline-date">2023 - Présent</span>
@@ -84,7 +325,7 @@
     </section>
 
     <section>
-        <h2>Centres d’intérêt</h2>
+        <h2 class="section-title">Centres d’intérêt</h2>
         <div class="experience-grid">
             <div class="experience-card">
                 <h3>Réseaux Informatiques</h3>

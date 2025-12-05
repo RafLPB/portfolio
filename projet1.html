@@ -3,26 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet 1 - Portfolio Rafaël Duong</title>
-    <link rel="stylesheet" href="ressource/css/styles.css">
-    <link rel="stylesheet" href="ressource/css/stylesProjet.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Projet - Votelia</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        /* === GLOBAL STYLES (From index.html) === */
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151932;
+            --bg-tertiary: #1e2338;
+            --accent-primary: #00ff88;
+            --accent-secondary: #00d4ff;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --border-color: #27293d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 60px; /* Account for fixed nav */
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        nav a::before {
+            content: '>';
+            color: var(--accent-primary);
+            opacity: 0;
+            margin-right: 0.5rem;
+            transition: opacity 0.3s;
+        }
+        nav a:hover { color: var(--accent-primary); }
+        nav a:hover::before { opacity: 1; }
+
+        /* General Typography & Layout */
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        h2, h3, h4 {
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; }
+        ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        li::before {
+            content: '▹';
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -1.2rem;
+            top: 0;
+        }
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            text-decoration: none;
+        }
+
+        /* Tags */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* === PROJECT PAGE SPECIFIC === */
+        .project-page {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .project-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+        .back-btn {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-btn:hover {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+        .project-header .section-title {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .project-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 3rem;
+        }
+        .project-main {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .project-description h2 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .project-description h3 { /* Override default h3 */
+            font-size: 1.3rem;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 2rem;
+        }
+        .project-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .project-gallery img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .project-details {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            height: fit-content; /* Stick to top */
+        }
+        .project-details h3 { /* Override default h3 */
+            font-size: 1.3rem;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+        .project-details ul {
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        .project-details li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .project-details li::before {
+            content: '▹';
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .project-details strong {
+            color: var(--text-primary);
+        }
+
+        /* === Responsive === */
+        @media (max-width: 900px) {
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+            .project-details {
+                order: -1; /* Move details to top on mobile */
+            }
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 50px; }
+            nav { height: 50px; padding: 0.5rem 0; }
+            nav ul { gap: 1.5rem; padding: 0 1rem; }
+            nav a { font-size: 0.8rem; }
+            .project-page {
+                padding: 3rem 1rem;
+            }
+            .project-header .section-title {
+                font-size: 2rem;
+            }
+            .project-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 <nav>
     <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="index.html#projets">Projets</a></li>
-        <li><a href="index.html#apropos">À propos</a></li>
-        <li><a href="apprentissage.html">Mes Compétences</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html">accueil</a></li>
+        <li><a href="index.html#projets">projets</a></li>
+        <li><a href="savoirPlus.html">à propos</a></li>
+        <li><a href="apprentissage.html">compétences</a></li>
+        <li><a href="contact.html">contact</a></li>
     </ul>
 </nav>
 
 <div class="project-page">
     <div class="project-header">
-        <a href="index.html#projets" class="back-btn">Retour aux projets</a>
+        <a href="index.html#projets" class="back-btn">&lt; Retour aux projets</a>
         <h1 class="section-title">Votelia</h1>
     </div>
 
@@ -37,21 +310,26 @@
                 <p>
                     <strong>Votelia</strong> est une plateforme de gestion des votes électroniques destinée à simplifier et sécuriser les processus électoraux.
                     Elle permet l'organisation de votes en ligne de manière transparente, rapide, et avec une grande fiabilité.
-                    <br><br>
+                </p>
+                <p>
                     <strong>Contexte</strong> : Les processus électoraux traditionnels sont souvent coûteux et sujets à des délais importants.
                     Avec la digitalisation croissante, une plateforme comme Votelia répond à un besoin de modernisation des votes,
                     tout en garantissant leur intégrité et leur confidentialité.
-                    <br><br>
+                </p>
+                <p>
                     <strong>Objectifs</strong> :
+                </p>
                 <ul>
                     <li>Fournir un système sécurisé et accessible pour des votes électroniques fiables.</li>
                     <li>Assurer la confidentialité des choix des électeurs et l'intégrité des résultats.</li>
                     <li>Proposer une interface utilisateur intuitive pour faciliter la participation électorale.</li>
                 </ul>
-                <strong>Résultats obtenus</strong> : Votelia permet de gérer facilement des réferendums électroniques.
-                Le système garantit la sécurité des données grâce à des technologies modernes de chiffrement et des protocoles sécurisés.
+                <p>
+                    <strong>Résultats obtenus</strong> : Votelia permet de gérer facilement des réferendums électroniques.
+                    Le système garantit la sécurité des données grâce à des technologies modernes de chiffrement et des protocoles sécurisés.
                 </p>
-                <h2>Compétences acquises</h2>
+
+                <h3>Compétences acquises</h3>
                 <ul>
                     <li><strong>Gestion de la sécurité des données :</strong> Implémentation de systèmes de chiffrement avancés (ex : SSL/TLS) pour sécuriser les échanges de données sensibles.</li>
                     <li><strong>Développement d’authentification sécurisée :</strong> Intégration d’une authentification multi-facteurs et gestion des sessions avec journalisation pour prévenir les fraudes.</li>
@@ -62,57 +340,64 @@
                     <li><strong>Sensibilisation à la confidentialité :</strong> Pratiques avancées pour garantir l’intégrité des résultats et la confidentialité des électeurs.</li>
                     <li><strong>Collaboration interdisciplinaire :</strong> Travail en équipe pour intégrer des fonctionnalités critiques tout en respectant des délais courts.</li>
                 </ul>
-                <h2>Défis techniques</h2>
+
+                <h3>Défis techniques</h3>
                 <p>
                     <strong>1. Sécurisation des données sensibles</strong> :
                     <br>
                     <em>Défi</em> : Protéger les données des électeurs et garantir que les votes restent confidentiels.
                     <br>
                     <em>Solution</em> :
+                </p>
                 <ul>
                     <li>Implémentation d’un système de chiffrement avancé pour sécuriser les données des votes et des électeurs.</li>
                 </ul>
-                <br>
 
-                <strong>2. Prévention des fraudes</strong> :
-                <br>
-                <em>Défi</em> : Empêcher les votes multiples ou non autorisés.
-                <br>
-                <em>Solution</em> :
+                <p>
+                    <strong>2. Prévention des fraudes</strong> :
+                    <br>
+                    <em>Défi</em> : Empêcher les votes multiples ou non autorisés.
+                    <br>
+                    <em>Solution</em> :
+                </p>
                 <ul>
                     <li>Authentification sécurisée pour vérifier l’identité des électeurs.</li>
                 </ul>
-                <br>
 
-                <strong>3. Accessibilité et fiabilité</strong> :
-                <br>
-                <em>Défi</em> : Créer une plateforme facile à utiliser et résiliente en cas de trafic élevé.
-                <br>
-                <em>Solution</em> :
+                <p>
+                    <strong>3. Accessibilité et fiabilité</strong> :
+                    <br>
+                    <em>Défi</em> : Créer une plateforme facile à utiliser et résiliente en cas de trafic élevé.
+                    <br>
+                    <em>Solution</em> :
+                </p>
                 <ul>
                     <li>Design responsive pour garantir l’accessibilité sur n'importe quelles machines.</li>
                 </ul>
-                </p>
 
-                <h2>Impact</h2>
+                <h3>Impact</h3>
                 <p>
                     <strong>1. Pour les utilisateurs</strong> :
+                </p>
                 <ul>
                     <li>Participation simplifiée grâce à une plateforme accessible 24/7.</li>
                     <li>Confiance accrue dans le processus grâce à des mesures de sécurité avancées.</li>
                 </ul>
-                <br>
+
+                <p>
                     <strong>2. Pour les organisateurs</strong> :
+                </p>
                 <ul>
                     <li>Réduction des coûts liés aux infrastructures physiques des votes.</li>
                     <li>Gestion automatisée des résultats, éliminant les erreurs humaines.</li>
                 </ul>
-                <br>
+
+                <p>
                     <strong>3. Pour les processus électoraux</strong> :
+                </p>
                 <ul>
                     <li>Augmentation du taux de participation grâce à la facilité d’accès.</li>
                 </ul>
-                </p>
             </div>
         </div>
 

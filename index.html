@@ -3,159 +3,752 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
-    <link rel="stylesheet" href="ressource/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!--<script src="ressource/js/js.js"></script>-->
+    <title>Rafaël Duong - Pentester & Cybersécurité</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151932;
+            --bg-tertiary: #1e2338;
+            --accent-primary: #00ff88;
+            --accent-secondary: #00d4ff;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --border-color: #27293d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::before {
+            content: '>';
+            color: var(--accent-primary);
+            opacity: 0;
+            margin-right: 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-primary);
+        }
+
+        nav a:hover::before {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        /* Section commune */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        /* Parcours */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--bg-primary);
+        }
+
+        .timeline-date {
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        /* Projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-type {
+            color: var(--accent-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Compétences */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li::before {
+            content: '▹';
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-card a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid,
+            .skills-container,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- Page d'accueil -->
 <nav>
     <ul>
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#projets">Projets</a></li>
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="apprentissage.html">Mes Compétences</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#accueil">accueil</a></li>
+        <li><a href="#projets">projets</a></li>
+        <li><a href="savoirPlus.html">à propos</a></li>
+        <li><a href="apprentissage.html">compétences</a></li>
+        <li><a href="contact.html">contact</a></li>
     </ul>
 </nav>
-<div id="home-page">
-    <header id="accueil">
-        <h1 class="title">Rafaël Duong</h1>
-        <p class="subtitle">Développeur Créatif</p>
-        <a href="#projets" class="btn">Voir mes projets</a>
-    </header>
 
-    <section id="projets">
-        <h2 class="section-title">Mes Projets</h2>
-        <div class="projects">
-            <a href="projet1.html" class="project-card">
-                <img src="ressource/img/vote.png" alt="Projet 1" class="project-img">
-                <div class="project-info">
-                    <h3 class="project-title">Votelia</h3>
-                    <p>Votelia est une application de vote électronique sécurisée, conçue en Java, permettant à une entreprise de mener des référendums en ligne de manière confidentielle et fiable.</p>
-                </div>
-            </a>
-            <a href="projet2.html" class="project-card">
-                <img src="ressource/img/kawaiitoys.png" alt="Projet 2" class="project-img">
-                <div class="project-info">
-                    <h3 class="project-title">KawaiiToys</h3>
-                    <p>KawaiiToys est un site de e-commerce conçu avec une architecture MVC (Modèle-Vue-Contrôleur) pour assurer une structure modulaire et évolutive.</p>
-                </div>
-            </a>
-            <a href="projet3.html" class="project-card">
-                <img src="ressource/img/ndi.png" alt="Projet 3" class="project-img">
-                <div class="project-info">
-                    <h3 class="project-title">Nuit de l'info</h3>
-                    <p>Aquapulse est une plateforme interactive qui connecte le corps humain et l’océan à travers quatre axes symboliques, en utilisant des contenus éducatifs, un podcast intégré, et un mini-jeu ludique pour sensibiliser à la santé et à la préservation des écosystèmes marins.</p>
-                </div>
-            </a>
-            <a href="projet4.html" class="project-card">
-                <img src="ressource/img/PMF.png" alt="Projet 4" class="project-img">
-                <div class="project-info">
-                    <h3 class="project-title">Stage LPMF</h3>
-                    <p>Rapport de stage (simplifié) détaillant mes missions en administration réseau et infrastructure informatique au lycée Pierre Mendès France.</p>
-                </div>
-            </a>
+<section class="hero" id="accueil">
+    <div class="hero-content">
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>Disponible en alternance</span>
         </div>
-    </section>
-
-    <section id="apropos">
-        <h2 class="section-title">À Propos</h2>
-        <div class="about">
-            <p>Je m'appelle Rafaël DUONG, étudiant en deuxième année de BUT Informatique à l’IUT de Montpellier. Passionné par l’univers des technologies, je m’intéresse particulièrement aux réseaux informatiques et à la cybersécurité. Curieux et déterminé, je cherche constamment à approfondir mes connaissances et à relever de nouveaux défis dans ce domaine en pleine évolution. Mes expériences académiques, projets personnels et activités sportives m’ont permis de développer des compétences techniques solides, tout en cultivant un esprit d’équipe et de collaboration.</p>
-            <div class="skills">
-                <span class="skill-tag">HTML5</span>
-                <span class="skill-tag">CSS3</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">PHP</span>
-                <span class="skill-tag">MySQL</span>
-                <span class="skill-tag">C</span>
-            </div>
-            <a href="savoirPlus.html" class="btn">En savoir plus</a>
+        <h1>Rafaël Duong</h1>
+        <p class="subtitle">$ whoami → Pentester & Étudiant BUT DACS</p>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px;">
+            Passionné par la cybersécurité offensive, je me spécialise dans le pentesting et l'administration système. Actuellement en 3ème année de BUT Informatique parcours DACS à l'IUT de Montpellier.
+        </p>
+        <div class="cta-buttons">
+            <a href="#projets" class="btn btn-primary">Voir mes projets →</a>
+            <a href="#contact" class="btn btn-secondary">Me contacter</a>
         </div>
-    </section>
-    <section id="competences">
-        <h2 class="section-title">Mes Compétences</h2>
-        <div class="competence-grid">
-            <div class="competence-card">
-                <span class="competence-level level-acquired-plus">Acquis ++</span>
-                <h3 class="competence-title">Réaliser un développement d'application</h3>
-                <p>Développer, concevoir, coder, tester et intégrer une solution informatique pour un client en respectant les besoins décrits et en appliquant les principes algorithmiques.</p>
-                <div class="skills">
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">HTML/CSS</span>
+    </div>
+</section>
+
+<section id="parcours">
+    <div class="section-header">
+        <div class="section-tag">// MON PARCOURS</div>
+        <h2 class="section-title">Formation & Expérience</h2>
+        <p class="section-description">
+            De l'administration système au pentesting, mon parcours reflète ma passion pour la sécurité offensive.
+        </p>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-date">OCT 2025</div>
+            <div class="timeline-content">
+                <h3>Certification PentesterLab</h3>
+                <p><strong>Introduction to Web Hacking</strong></p>
+                <p>Première certification obtenue sur PentesterLab, marquant le début de ma spécialisation en pentesting web.</p>
+                <div class="tags">
+                    <span class="tag">Web Security</span>
+                    <span class="tag">Pentesting</span>
+                    <span class="tag">OWASP</span>
                 </div>
-                <p><strong>Point fort:</strong> Ma logique de programmation affinée me permet de concevoir rapidement des applications efficaces.</p>
-            </div>
-
-            <div class="competence-card">
-                <span class="competence-level level-acquired">Acquis +</span>
-                <h3 class="competence-title">Optimiser des applications</h3>
-                <p>Proposer des applications informatiques optimisées en fonction de critères spécifiques (temps d'exécution, précision, consommation de ressources).</p>
-                <p><strong>Point fort:</strong> Ma compréhension des structures de données et des algorithmes me permet d'analyser et d'améliorer les performances des applications.</p>
-            </div>
-
-            <div class="competence-card">
-                <span class="competence-level level-progress">En progression rapide</span>
-                <h3 class="competence-title">Administrer des systèmes informatiques communicants complexes</h3>
-                <p>Installer, configurer, mettre à disposition et maintenir en conditions opérationnelles des infrastructures, des services et des réseaux.</p>
-                <div class="skills">
-                    <span class="skill-tag">Linux</span>
-                    <span class="skill-tag">Active Directory</span>
-                    <span class="skill-tag">Déploiement d'images</span>
-                    <span class="skill-tag">Réseaux</span>
-                    <span class="skill-tag">Bash</span>
-                </div>
-            </div>
-
-            <div class="competence-card">
-                <span class="competence-level level-acquired">Acquis</span>
-                <h3 class="competence-title">Gérer des données de l'information</h3>
-                <p>Concevoir, gérer, administrer et exploiter les données de l'entreprise pour mettre à disposition les informations nécessaires.</p>
-                <div class="skills">
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">Base de données relationnelles</span>
-                    <span class="skill-tag">Sécurisation des données</span>
-                </div>
-                <p><strong>Point fort:</strong> Ma compréhension approfondie des principes de conception de bases de données relationnelles.</p>
-            </div>
-
-            <div class="competence-card">
-                <span class="competence-level level-acquired">Acquis</span>
-                <h3 class="competence-title">Conduire un projet</h3>
-                <p>Satisfaire les besoins des utilisateurs, organiser et piloter un projet informatique avec des méthodes classiques ou agiles.</p>
-                <p><strong>Point fort:</strong> Ma capacité à prioriser les tâches, à gérer les risques et à m'adapter rapidement aux changements.</p>
-            </div>
-
-            <div class="competence-card">
-                <span class="competence-level level-acquired">Acquis</span>
-                <h3 class="competence-title">Collaborer au sein d'une équipe informatique</h3>
-                <p>Acquérir, développer et exploiter les aptitudes nécessaires pour travailler efficacement dans une équipe informatique.</p>
-                <p><strong>Point fort:</strong> Ma capacité d'adaptation et ma bonne communication me permettent de m'intégrer efficacement dans différentes équipes.</p>
             </div>
         </div>
 
-        <div class="soft-skills-container">
-            <h3 class="competence-title">Soft Skills</h3>
-            <div class="skills">
-                <span class="skill-tag">Travail en équipe</span>
-                <span class="skill-tag">Communication</span>
-                <span class="skill-tag">Adaptabilité</span>
-                <span class="skill-tag">Autonomie</span>
-                <span class="skill-tag">Développement collaboratif sous pression</span>
+        <div class="timeline-item">
+            <div class="timeline-date">SEPT 2025 - PRÉSENT</div>
+            <div class="timeline-content">
+                <h3>Alternance - Développeur & Admin Système</h3>
+                <p><strong>Entreprise de Télécommunications</strong></p>
+                <p>Migration de sites web vers WordPress, déploiement de services internes (Uptime Kuma) via Proxmox, gestion de routeurs et support technique.</p>
+                <div class="tags">
+                    <span class="tag">WordPress</span>
+                    <span class="tag">Proxmox</span>
+                    <span class="tag">Télécoms</span>
+                    <span class="tag">Support</span>
+                </div>
             </div>
         </div>
 
+        <div class="timeline-item">
+            <div class="timeline-date">JAN - AVR 2025</div>
+            <div class="timeline-content">
+                <h3>Stage - Administration Réseau</h3>
+                <p><strong>Lycée Pierre Mendès France</strong></p>
+                <p>Gestion Active Directory, déploiement d'images système, configuration GPO et optimisation de l'infrastructure réseau.</p>
+                <div class="tags">
+                    <span class="tag">Active Directory</span>
+                    <span class="tag">GPO</span>
+                    <span class="tag">Réseau</span>
+                </div>
+            </div>
+        </div>
 
-    </section>
-    <footer>
-        <p>&copy; 2025 Rafaël Duong. Tous droits réservés.</p>
-    </footer>
-</div>
+        <div class="timeline-item">
+            <div class="timeline-date">2023 - 2026</div>
+            <div class="timeline-content">
+                <h3>BUT Informatique - Parcours DACS</h3>
+                <p><strong>IUT de Montpellier</strong></p>
+                <p>Déploiement d'Applications Communicantes et Sécurisées. Spécialisation en réseaux, cybersécurité et administration système.</p>
+                <div class="tags">
+                    <span class="tag">Réseaux</span>
+                    <span class="tag">Cybersécurité</span>
+                    <span class="tag">Linux</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projets">
+    <div class="section-header">
+        <div class="section-tag">// RÉALISATIONS</div>
+        <h2 class="section-title">Projets & Contributions</h2>
+    </div>
+
+    <div class="projects-grid">
+        <a href="projet1.html" style="text-decoration: none;">
+        <div class="project-card">
+            <div class="project-type">SÉCURITÉ</div>
+            <h3>Votelia - Application de Vote Sécurisée</h3>
+            <p>Système de vote électronique avec cryptographie avancée, hachage sécurisé et authentification robuste développé en Java.</p>
+            <div class="tags">
+                <span class="tag">Java</span>
+                <span class="tag">Cryptographie</span>
+                <span class="tag">MySQL</span>
+            </div>
+        </div>
+        </a>
+
+        <a href="projet2.html" style="text-decoration: none;">
+        <div class="project-card">
+            <div class="project-type">DÉVELOPPEMENT WEB</div>
+            <h3>KawaiiToys - E-commerce MVC</h3>
+            <p>Site e-commerce avec architecture MVC, protection contre les attaques par dictionnaire et système d'authentification sécurisé.</p>
+            <div class="tags">
+                <span class="tag">PHP</span>
+                <span class="tag">MVC</span>
+                <span class="tag">Sécurité</span>
+            </div>
+        </div>
+        </a>
+
+        <a href="projet3.html" style="text-decoration: none;">
+        <div class="project-card">
+            <div class="project-type">NUIT DE L'INFO</div>
+            <h3>Aquapulse - Nuit de l'Info 2024</h3>
+            <p>Plateforme web interactive développée en 24h. Victoire au défi national grâce à une excellente collaboration d'équipe.</p>
+            <div class="tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Teamwork</span>
+                <span class="tag">Innovation</span>
+            </div>
+        </div>
+        </a>
+
+        <a href="projet4.html" style="text-decoration: none;">
+        <div class="project-card">
+            <div class="project-type">INFRASTRUCTURE</div>
+            <h3>Stage LPMF</h3>
+            <p>Rapport de stage (simplifié) détaillant mes missions en administration réseau et infrastructure informatique au lycée Pierre Mendès France.</p>
+            <div class="tags">
+                <span class="tag">Active Directory</span>
+                <span class="tag">GPO</span>
+                <span class="tag">Gestion Parc Informatique</span>
+            </div>
+        </div>
+        </a>
+
+        <a href="projet5.html" style="text-decoration: none;">
+            <div class="project-card">
+                <div class="project-type">DÉVELOPPEMENT WEB</div>
+                <h3>Alternance Perfectys</h3>
+                <p>Site web vitrine pour Perfectys Télécom, passage de code dur à Wordpress.</p>
+                <div class="tags">
+                    <span class="tag">Wordpress</span>
+                    <span class="tag">HTML/CSS/JS</span>
+                    <span class="tag">Référencement/SEO</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" style="text-decoration: none;">
+            <div class="project-card">
+                <div class="project-type">PROJET DOCKER</div>
+                <h3>Aquapulse - Nuit de l'Info 2024</h3>
+                <p>Plateforme web interactive développée en 24h. Victoire au défi national grâce à une excellente collaboration d'équipe.</p>
+                <div class="tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Teamwork</span>
+                    <span class="tag">Innovation</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section id="competences">
+    <div class="section-header">
+        <div class="section-tag">// EXPERTISE</div>
+        <h2 class="section-title">Compétences Techniques</h2>
+    </div>
+
+    <div class="skills-container">
+        <div class="skill-category">
+            <h3>Cybersécurité</h3>
+            <ul class="skill-list">
+                <li>Pentesting Web (PentesterLab)</li>
+                <li>Analyse de vulnérabilités</li>
+                <li>Cryptographie & Hachage</li>
+                <li>Sécurisation d'applications</li>
+                <li>OWASP Top 10</li>
+            </ul>
+        </div>
+
+        <div class="skill-category">
+            <h3>Administration Système</h3>
+            <ul class="skill-list">
+                <li>Linux (Debian, Ubuntu)</li>
+                <li>Active Directory & GPO</li>
+                <li>Proxmox & Virtualisation</li>
+                <li>Déploiement de services</li>
+                <li>Bash scripting</li>
+            </ul>
+        </div>
+
+        <div class="skill-category">
+            <h3>Réseaux & Télécoms</h3>
+            <ul class="skill-list">
+                <li>Configuration routeurs</li>
+                <li>Architecture réseau</li>
+                <li>Protocoles TCP/IP</li>
+                <li>VPN & Firewall</li>
+                <li>Support technique</li>
+            </ul>
+        </div>
+
+        <div class="skill-category">
+            <h3>Développement</h3>
+            <ul class="skill-list">
+                <li>Java (POO, Sécurité)</li>
+                <li>PHP & Architecture MVC</li>
+                <li>JavaScript & HTML/CSS</li>
+                <li>WordPress</li>
+                <li>MySQL & SQL</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-header">
+        <div class="section-tag">// CONTACT</div>
+        <h2 class="section-title">Restons en contact</h2>
+        <p class="section-description">
+            Ouvert aux opportunités en pentesting, cybersécurité et administration système.
+        </p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <a href="mailto:rafael.duong@etu.umontpellier.fr">Mail Académique</a>
+        </div>
+
+        <div class="contact-card">
+            <div class="contact-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/rafa%C3%ABl-duong-1090352ab/" target="_blank">Rafaël Duong</a>
+        </div>
+
+        <div class="contact-card">
+            <div class="contact-icon">💻</div>
+            <h3>GitHub</h3>
+            <a href="https://github.com/RafLPB" target="_blank">@RafLPB</a>
+        </div>
+
+        <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h3>Localisation</h3>
+            <a>Montpellier, France</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Rafaël Duong • Conçu avec passion pour la cybersécurité</p>
+</footer>
 </body>
 </html>
