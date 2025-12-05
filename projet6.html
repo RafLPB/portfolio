@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet - Stage LPMF</title>
+    <title>Apprentissage - TryHackMe</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* === GLOBAL STYLES (From index.html) === */
+        /* === GLOBAL STYLES === */
         :root {
             --bg-primary: #0a0e27;
             --bg-secondary: #151932;
@@ -24,7 +24,7 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            padding-top: 60px; /* Account for fixed nav */
+            padding-top: 60px;
         }
 
         /* Navigation */
@@ -79,9 +79,11 @@
         }
         h2 { font-size: 2rem; }
         h3 { font-size: 1.5rem; color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; }
+        h4 { font-size: 1.2rem; color: var(--text-primary); margin-top: 1.5rem; }
         ul {
             list-style: none;
             padding-left: 1rem;
+            margin-bottom: 1.5rem;
         }
         li {
             color: var(--text-secondary);
@@ -102,28 +104,6 @@
         }
         a:hover {
             text-decoration: underline;
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            background: var(--accent-primary);
-            color: var(--bg-primary);
-            font-weight: 600;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-            text-decoration: none;
         }
 
         /* Tags */
@@ -205,31 +185,21 @@
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-color);
         }
-        .project-description h3 { /* Override default h3 */
+        .project-description h3 {
             font-size: 1.3rem;
             color: var(--accent-primary);
             font-family: 'JetBrains Mono', monospace;
             margin-top: 2rem;
         }
-        .project-gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .project-gallery img {
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
+
         .project-details {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 2rem;
-            height: fit-content; /* Stick to top */
+            height: fit-content;
         }
-        .project-details h3 { /* Override default h3 */
+        .project-details h3 {
             font-size: 1.3rem;
             color: var(--accent-primary);
             font-family: 'JetBrains Mono', monospace;
@@ -257,29 +227,25 @@
             color: var(--text-primary);
         }
 
-        /* === Responsive === */
+        /* Highlight Box for Summary */
+        .highlight-box {
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid var(--accent-secondary);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box h4 { margin-top: 0; color: var(--accent-secondary); }
+
+        /* Responsive */
         @media (max-width: 900px) {
-            .project-content {
-                grid-template-columns: 1fr;
-            }
-            .project-details {
-                order: -1; /* Move details to top on mobile */
-            }
+            .project-content { grid-template-columns: 1fr; }
+            .project-details { order: -1; }
         }
         @media (max-width: 768px) {
             body { padding-top: 50px; }
             nav { height: 50px; padding: 0.5rem 0; }
-            nav ul { gap: 1.5rem; padding: 0 1rem; }
-            nav a { font-size: 0.8rem; }
-            .project-page {
-                padding: 3rem 1rem;
-            }
-            .project-header .section-title {
-                font-size: 2rem;
-            }
-            .project-gallery {
-                grid-template-columns: 1fr;
-            }
+            .project-header .section-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -296,72 +262,106 @@
 
 <div class="project-page">
     <div class="project-header">
-        <a href="index.html#projets" class="back-btn">&lt; Retour aux projets</a>
-        <h1 class="section-title">Stage LPMF</h1>
+        <a href="index.html#projets" class="back-btn">&lt; Retour</a>
+        <h1 class="section-title">Parcours TryHackMe</h1>
     </div>
 
     <div class="project-content">
         <div class="project-main">
             <div class="project-description">
-                <h2>Présentation du Stage</h2>
+                <h2>Bilan d'Apprentissage & Progression</h2>
                 <p>
-                    Le stage s'est déroulé au lycée Pierre Mendès France, spécialisé dans les formations techniques et professionnelles.
-                    L'objectif principal était d'améliorer l'infrastructure informatique en résolvant divers problèmes techniques et en optimisant la gestion du réseau.
+                    Formation continue via la plateforme TryHackMe, axée sur les fondamentaux de la cybersécurité,
+                    l'administration système et les méthodologies offensives/défensives (Red vs Blue Team).
                 </p>
 
-                <h3>Analyse des missions</h3>
+                <h3>1. Maîtrise des Systèmes d'Exploitation (OS)</h3>
+                <p>Acquisition de compétences solides sur les systèmes cibles et leur administration.</p>
+
+                <h4>Linux (Le cœur du hacking)</h4>
                 <ul>
-                    <li>Gestion des permissions utilisateurs via Active Directory et GPO</li>
-                    <li>Déploiement d'une nouvelle image système sur les postes informatiques</li>
-                    <li>Optimisation de l'accès aux imprimantes réseau et des outils pédagogiques</li>
+                    <li>Maîtrise du terminal et des lignes de commande (CLI).</li>
+                    <li>Navigation dans les fichiers (cd, ls), gestion des permissions (chmod, chown).</li>
+                    <li>Compréhension de la gestion des processus et des utilisateurs Linux.</li>
                 </ul>
 
-                <h3>Projets Réalisés</h3>
-
-                <h4>Déploiement de la Nouvelle Image</h4>
-                <p>
-                    Le projet a consisté à créer et déployer une image système standardisée pour homogénéiser les postes de travail.
-                    Après analyse, il a été décidé d'utiliser une image existante fournie par Econocom, permettant une mise en place plus rapide et efficace.
-                </p>
-
-                <h4>Optimisation de l'Infrastructure</h4>
-                <p>
-                    Plusieurs actions ont été menées pour améliorer la performance des équipements :
-                </p>
+                <h4>Windows & PowerShell</h4>
                 <ul>
-                    <li>Correction des problèmes d'accès aux imprimantes réseau</li>
-                    <li>Résolution des bugs logiciels impactant les outils pédagogiques</li>
-                    <li>Installation et configuration d'outils pédagogiques comme la réalité virtuelle</li>
+                    <li>Administration via PowerShell et CMD (au-delà de l'interface graphique).</li>
+                    <li>Compréhension du système de fichiers NTFS et de la gestion des tâches.</li>
                 </ul>
 
-                <h4>Gestion des Stratégies de Groupe (GPO)</h4>
-                <p>
-                    Pour automatiser certaines tâches, les stratégies de groupe ont été utilisées pour :
-                </p>
+                <h4>Active Directory (AD)</h4>
                 <ul>
-                    <li>Déployer des applications sur plusieurs machines</li>
-                    <li>Gérer les accès aux fichiers et imprimantes</li>
-                    <li>Renforcer la sécurité en appliquant des restrictions d'accès</li>
+                    <li>Compréhension de l'architecture d'entreprise : Domaines, Utilisateurs et Groupes centralisés.</li>
+                    <li>Identification de l'AD comme surface d'attaque critique (Pentest interne).</li>
                 </ul>
 
-                <h3>Conclusion</h3>
+                <h3>2. Compréhension des Réseaux</h3>
+                <p>Analyse approfondie de la "colonne vertébrale" de la sécurité informatique.</p>
+                <ul>
+                    <li><strong>Protocoles :</strong> Fonctionnement de TCP/IP, DNS, HTTP.</li>
+                    <li><strong>Modèle OSI :</strong> Compréhension des 7 couches (physique à applicative).</li>
+                    <li><strong>Adressage :</strong> Gestion des IP, sous-réseaux et routage des paquets.</li>
+                </ul>
+
+
+
+                [Image of OSI model diagram]
+
+
+                <h3>3. Philosophie et Méthodologie</h3>
+                <ul>
+                    <li><strong>Vocabulaire :</strong> Distinction Red Team (Offensif) vs Blue Team (Défense/SOC).</li>
+                    <li><strong>Éthique :</strong> Cadre légal et importance des autorisations écrites.</li>
+                    <li><strong>Triade CIA :</strong> Confidentialité, Intégrité, Disponibilité.</li>
+                </ul>
+
+                <h3>4. Recherche & OSINT</h3>
+                <p>Développement de compétences en Open Source Intelligence.</p>
+                <ul>
+                    <li>Utilisation avancée de Google Dorking pour l'extraction d'informations.</li>
+                    <li>Analyse de documentation technique pour identifier les vulnérabilités.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>Profil Actuel : Admin Système Jr. (Sec. Aware)</h4>
+                    <p>
+                        <strong>Acquis :</strong> Configuration machine, analyse de logs, scripting basique, compréhension théorique des failles.
+                    </p>
+                    <p>
+                        <strong>Transition en cours :</strong> Passage de l'architecture ("Comment ça marche ?") à l'exploitation ("Comment le casser ?").
+                    </p>
+                </div>
+
+                <h3>La suite logique (Roadmap)</h3>
                 <p>
-                    Ce stage a permis d'acquérir des compétences techniques en administration réseau et systèmes tout en mettant en lumière l'importance
-                    de la communication et de la documentation dans un service informatique.
+                    Actuellement au début du parcours <strong>Jr Penetration Tester</strong>, les prochains modules se concentreront sur l'exploitation pure :
                 </p>
+                <ul>
+                    <li>Web Hacking Fundamentals (OWASP Top 10)</li>
+                    <li>Scan réseau avancé (Nmap)</li>
+                    <li>Utilisation d'outils offensifs (Metasploit, Burp Suite)</li>
+                </ul>
             </div>
         </div>
+
         <div class="project-details">
-            <h3>Détails du stage</h3>
+            <h3>Détails du module</h3>
             <ul>
-                <li><strong>Entreprise:</strong> Lycée Pierre Mendès-France</li>
-                <li><strong>Date:</strong> Janvier-Avril 2025</li>
-                <li><strong>Rôle:</strong> Responsable Informatique</li>
+                <li><strong>Plateforme:</strong> TryHackMe</li>
+                <li><strong>Parcours:</strong> Jr Penetration Tester</li>
+                <li><strong>Statut:</strong> En cours</li>
+                <li><strong>Niveau:</strong> Intermédiaire</li>
             </ul>
-            <h3>Technologies utilisées</h3>
+            <h3>Compétences Clés</h3>
             <div class="skills">
+                <span class="skill-tag">Linux / Bash</span>
+                <span class="skill-tag">PowerShell</span>
+                <span class="skill-tag">Réseaux TCP/IP</span>
                 <span class="skill-tag">Active Directory</span>
-                <span class="skill-tag">GPO</span>
+                <span class="skill-tag">OSINT</span>
+                <span class="skill-tag">Google Dorking</span>
             </div>
         </div>
     </div>
