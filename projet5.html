@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet - Votelia</title>
+    <title>Projet - Alternance Perfectys</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* === GLOBAL STYLES (From index.html) === */
+        /* === GLOBAL STYLES (Conservés du modèle) === */
         :root {
             --bg-primary: #0a0e27;
             --bg-secondary: #151932;
@@ -24,7 +24,7 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            padding-top: 60px; /* Account for fixed nav */
+            padding-top: 60px;
         }
 
         /* Navigation */
@@ -66,11 +66,8 @@
         nav a:hover { color: var(--accent-primary); }
         nav a:hover::before { opacity: 1; }
 
-        /* General Typography & Layout */
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
+        /* Typography & Layout */
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
         h2, h3, h4 {
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
@@ -79,10 +76,8 @@
         }
         h2 { font-size: 2rem; }
         h3 { font-size: 1.5rem; color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; }
-        ul {
-            list-style: none;
-            padding-left: 1rem;
-        }
+        h4 { font-size: 1.2rem; color: var(--text-primary); margin-top: 1.5rem; }
+        ul { list-style: none; padding-left: 1rem; }
         li {
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
@@ -96,43 +91,11 @@
             left: -1.2rem;
             top: 0;
         }
-        a {
-            color: var(--accent-primary);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            background: var(--accent-primary);
-            color: var(--bg-primary);
-            font-weight: 600;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-            text-decoration: none;
-        }
+        a { color: var(--accent-primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
         /* Tags */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
+        .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
         .skill-tag {
             background: rgba(0, 255, 136, 0.1);
             color: var(--accent-primary);
@@ -153,12 +116,8 @@
             font-size: 0.9rem;
         }
 
-        /* === PROJECT PAGE SPECIFIC === */
-        .project-page {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        /* Project Page Structure */
+        .project-page { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
         .project-header {
             display: flex;
             flex-direction: column;
@@ -167,16 +126,8 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 1.5rem;
         }
-        .back-btn {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        .back-btn:hover {
-            color: var(--accent-primary);
-            text-decoration: none;
-        }
+        .back-btn { font-family: 'JetBrains Mono', monospace; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .back-btn:hover { color: var(--accent-primary); text-decoration: none; }
         .project-header .section-title {
             margin: 0;
             font-size: 2.5rem;
@@ -186,11 +137,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .project-content {
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            gap: 3rem;
-        }
+        .project-content { display: grid; grid-template-columns: 3fr 1fr; gap: 3rem; }
         .project-main {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -205,81 +152,32 @@
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-color);
         }
-        .project-description h3 { /* Override default h3 */
-            font-size: 1.3rem;
-            color: var(--accent-primary);
-            font-family: 'JetBrains Mono', monospace;
-            margin-top: 2rem;
-        }
-        .project-gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .project-gallery img {
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
+        .project-description h3 { font-size: 1.3rem; color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; margin-top: 2rem; }
         .project-details {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 2rem;
-            height: fit-content; /* Stick to top */
+            height: fit-content;
         }
-        .project-details h3 { /* Override default h3 */
-            font-size: 1.3rem;
-            color: var(--accent-primary);
-            font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 1rem;
-        }
-        .project-details ul {
-            padding: 0;
-            margin-bottom: 2rem;
-        }
-        .project-details li {
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        .project-details li::before {
-            content: '▹';
-            color: var(--accent-primary);
-            font-size: 1.2rem;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        .project-details strong {
-            color: var(--text-primary);
-        }
+        .project-details h3 { font-size: 1.3rem; color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem; }
+        .project-details ul { padding: 0; margin-bottom: 2rem; }
+        .project-details li { color: var(--text-secondary); margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem; }
+        .project-details li::before { content: '▹'; color: var(--accent-primary); font-size: 1.2rem; position: absolute; left: 0; top: 0; }
+        .project-details strong { color: var(--text-primary); }
 
-        /* === Responsive === */
+        /* Responsive */
         @media (max-width: 900px) {
-            .project-content {
-                grid-template-columns: 1fr;
-            }
-            .project-details {
-                order: -1; /* Move details to top on mobile */
-            }
+            .project-content { grid-template-columns: 1fr; }
+            .project-details { order: -1; }
         }
         @media (max-width: 768px) {
             body { padding-top: 50px; }
             nav { height: 50px; padding: 0.5rem 0; }
             nav ul { gap: 1.5rem; padding: 0 1rem; }
             nav a { font-size: 0.8rem; }
-            .project-page {
-                padding: 3rem 1rem;
-            }
-            .project-header .section-title {
-                font-size: 2rem;
-            }
-            .project-gallery {
-                grid-template-columns: 1fr;
-            }
+            .project-page { padding: 3rem 1rem; }
+            .project-header .section-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -297,71 +195,82 @@
 <div class="project-page">
     <div class="project-header">
         <a href="index.html#projets" class="back-btn">&lt; Retour aux projets</a>
-        <h1 class="section-title">Stage LPMF</h1>
+        <h1 class="section-title">Alternance Perfectys Télécom</h1>
     </div>
 
     <div class="project-content">
         <div class="project-main">
             <div class="project-description">
-                <h2>Présentation du Stage</h2>
+                <h2>Présentation de l'Alternance</h2>
                 <p>
-                    Le stage s'est déroulé au lycée Pierre Mendès France, spécialisé dans les formations techniques et professionnelles.
-                    L'objectif principal était d'améliorer l'infrastructure informatique en résolvant divers problèmes techniques et en optimisant la gestion du réseau.
+                    Au sein de l'entreprise Perfectys Télécom, j'ai occupé un poste polyvalent alliant développement web,
+                    référencement (SEO) et administration système. Cette expérience m'a permis de moderniser les outils
+                    de l'entreprise et de restructurer le système de supervision réseau.
                 </p>
 
-                <h3>Analyse des missions</h3>
-                <ul>
-                    <li>Gestion des permissions utilisateurs via Active Directory et GPO</li>
-                    <li>Déploiement d'une nouvelle image système sur les postes informatiques</li>
-                    <li>Optimisation de l'accès aux imprimantes réseau et des outils pédagogiques</li>
-                </ul>
+                <h3>Développement Web & Refonte</h3>
 
-                <h3>Projets Réalisés</h3>
-
-                <h4>Déploiement de la Nouvelle Image</h4>
+                <h4>Modernisation du site vitrine</h4>
                 <p>
-                    Le projet a consisté à créer et déployer une image système standardisée pour homogénéiser les postes de travail.
-                    Après analyse, il a été décidé d'utiliser une image existante fournie par Econocom, permettant une mise en place plus rapide et efficace.
-                </p>
-
-                <h4>Optimisation de l'Infrastructure</h4>
-                <p>
-                    Plusieurs actions ont été menées pour améliorer la performance des équipements :
+                    J'ai entièrement restructuré le projet web de l'entreprise. L'ancienne architecture a été remplacée
+                    pour gagner en maintenabilité :
                 </p>
                 <ul>
-                    <li>Correction des problèmes d'accès aux imprimantes réseau</li>
-                    <li>Résolution des bugs logiciels impactant les outils pédagogiques</li>
-                    <li>Installation et configuration d'outils pédagogiques comme la réalité virtuelle</li>
+                    <li>Refactorisation du code JS : regroupement des éléments communs (header, footer) dans un script unique.</li>
+                    <li>Migration vers <strong>WordPress</strong> avec création d'un thème sur-mesure et intégration via Elementor.</li>
+                    <li>Mise en place d'une stack de plugins essentiels : Rank Math (SEO), Wordfence (Sécurité), UpdraftPlus (Sauvegardes) et LiteSpeed Cache (Performance).</li>
                 </ul>
 
-                <h4>Gestion des Stratégies de Groupe (GPO)</h4>
+                <h4>Portail Captif</h4>
                 <p>
-                    Pour automatiser certaines tâches, les stratégies de groupe ont été utilisées pour :
+                    Refonte complète du design et du code (HTML/CSS/JS) du portail captif utilisé pour le Wi-Fi invité.
+                </p>
+
+                <h3>Stratégie SEO & Marketing</h3>
+                <p>
+                    Un travail approfondi a été réalisé pour améliorer la visibilité locale ("Télécom Alès") et la crédibilité en ligne :
                 </p>
                 <ul>
-                    <li>Déployer des applications sur plusieurs machines</li>
-                    <li>Gérer les accès aux fichiers et imprimantes</li>
-                    <li>Renforcer la sécurité en appliquant des restrictions d'accès</li>
+                    <li>Intégration de données structurées (JSON-LD LocalBusiness) et optimisation des méta-données.</li>
+                    <li>Mise à jour de la fiche Google Maps et gestion des avis via le plugin <strong>Trustindex</strong>.</li>
+                    <li>Création de scénarios d'automatisation (via <strong>n8n</strong>) pour les campagnes d'avis clients.</li>
                 </ul>
 
-                <h3>Conclusion</h3>
+                <h3>Infrastructure & Supervision</h3>
+
+                <h4>Migration du Monitoring</h4>
                 <p>
-                    Ce stage a permis d'acquérir des compétences techniques en administration réseau et systèmes tout en mettant en lumière l'importance
-                    de la communication et de la documentation dans un service informatique.
+                    J'ai mené la migration du système de supervision historique (Xymon) vers une solution moderne : <strong>Uptime Kuma</strong>.
                 </p>
+                <ul>
+                    <li>Recherche et test de solutions open-source.</li>
+                    <li>Développement d'un <strong>script Python</strong> (Webhook) pour l'envoi d'alertes SMS en cas de coupure > 30 min.</li>
+                </ul>
+
+                <h4>Systèmes & Réseaux</h4>
+                <ul>
+                    <li>Déploiement de <strong>Nextcloud</strong> sur Proxmox via Docker (configuration VLAN et IP statique).</li>
+                    <li>Configuration et déploiement d'une dizaine de téléphones VoIP.</li>
+                </ul>
             </div>
         </div>
+
         <div class="project-details">
-            <h3>Détails du stage</h3>
+            <h3>Détails du poste</h3>
             <ul>
                 <li><strong>Entreprise:</strong> Perfectys Télécom</li>
                 <li><strong>Date:</strong> Septembre 2025 - Maintenant</li>
-                <li><strong>Rôle:</strong> Développeur Web</li>
+                <li><strong>Rôle:</strong> Dév Web & Admin Sys</li>
             </ul>
-            <h3>Technologies utilisées</h3>
+            <h3>Compétences clés</h3>
             <div class="skills">
-                <span class="skill-tag">Active Directory</span>
-                <span class="skill-tag">GPO</span>
+                <span class="skill-tag">WordPress/Elementor</span>
+                <span class="skill-tag">SEO/JSON-LD</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Uptime Kuma</span>
+                <span class="skill-tag">Proxmox</span>
+                <span class="skill-tag">n8n</span>
             </div>
         </div>
     </div>
