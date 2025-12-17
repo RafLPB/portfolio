@@ -446,6 +446,227 @@
             font-size: 0.9rem;
         }
 
+        /* Transition Matrix */
+        .matrix-transition {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .matrix-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .matrix-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            text-align: center;
+            animation: glitch 3s infinite;
+            letter-spacing: 0.2em;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+                color: var(--accent-primary);
+            }
+            25% {
+                text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), -2px 2px 10px rgba(0, 212, 255, 0.3);
+                color: var(--accent-secondary);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+                color: var(--accent-primary);
+            }
+            75% {
+                text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 2px -2px 10px rgba(0, 212, 255, 0.3);
+                color: var(--accent-secondary);
+            }
+        }
+
+        /* Particules Matrix */
+        .matrix-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .matrix-char {
+            position: absolute;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .matrix-line {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, var(--accent-primary), transparent);
+            opacity: 0.2;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 0;
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* Bouton HACK */
+        .hack-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 50px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .hack-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+        }
+
+        .hack-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Effet HACK - Gravité inversée */
+        body.hacked {
+            transform: scaleY(-1);
+            filter: hue-rotate(180deg) brightness(0.8);
+        }
+
+        body.hacked * {
+            transform: scaleY(-1);
+        }
+
+        /* Animation glitch global */
+        body.glitch {
+            animation: globalGlitch 0.15s infinite;
+        }
+
+        @keyframes globalGlitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-5px, 5px);
+            }
+            40% {
+                transform: translate(-5px, -5px);
+            }
+            60% {
+                transform: translate(5px, 5px);
+            }
+            80% {
+                transform: translate(5px, -5px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        /* Couleurs aléatoires */
+        body.chaos :root {
+            --accent-primary: #ff00ff;
+            --accent-secondary: #ffff00;
+            --text-primary: #ff0000;
+            --bg-primary: #00ffff;
+        }
+
+        body.chaos section {
+            transform: rotate(calc(var(--rotation, 0) * 1deg));
+        }
+
+        /* Rotation aléatoire des éléments */
+        body.chaos .project-card,
+        body.chaos .skill-category,
+        body.chaos .contact-card,
+        body.chaos .timeline-item {
+            transform: rotate(var(--rotation, 5deg)) skew(var(--skew, 2deg));
+        }
+
+        /* Inversion des couleurs */
+        body.inverted {
+            filter: invert(1) hue-rotate(180deg);
+        }
+
+        /* Pluie Matrix inversée */
+        body.raining .matrix-char {
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -469,6 +690,17 @@
             .skills-container,
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .matrix-text {
+                font-size: 2rem;
+            }
+
+            .hack-btn {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -499,6 +731,13 @@
             <a href="#projets" class="btn btn-primary">Voir mes projets →</a>
             <a href="#contact" class="btn btn-secondary">Me contacter</a>
         </div>
+    </div>
+</section>
+
+<section class="matrix-transition" id="transition">
+    <div class="matrix-bg" id="matrixBg"></div>
+    <div class="matrix-container">
+        <div class="matrix-text" id="matrixText">01010101</div>
     </div>
 </section>
 
@@ -750,5 +989,128 @@
 <footer>
     <p>© 2025 Rafaël Duong • Conçu avec passion pour la cybersécurité</p>
 </footer>
+
+<button class="hack-btn" id="hackBtn">HACK</button>
+
+<script>
+    // Générer les chiffres matrix animés
+    function createMatrixRain() {
+        const matrixBg = document.getElementById('matrixBg');
+        const container = document.querySelector('.matrix-transition');
+
+        if (!matrixBg || !container) return;
+
+        // Créer des colonnes de chiffres tombants
+        const columns = Math.floor(window.innerWidth / 40);
+
+        for (let i = 0; i < columns; i++) {
+            for (let j = 0; j < 5; j++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = Math.floor(Math.random() * 10);
+
+                const randomDuration = 3 + Math.random() * 4;
+                const randomDelay = Math.random() * 2;
+                const randomLeft = Math.random() * 100;
+
+                char.style.left = randomLeft + '%';
+                char.style.top = (j * 30 - 100) + 'px';
+                char.style.animationDuration = randomDuration + 's';
+                char.style.animationDelay = randomDelay + 's';
+
+                matrixBg.appendChild(char);
+            }
+        }
+
+        // Ajouter une ligne de scan
+        const scanLine = document.createElement('div');
+        scanLine.className = 'matrix-line';
+        scanLine.style.left = Math.random() * 100 + '%';
+        matrixBg.appendChild(scanLine);
+    }
+
+    // Initialiser au chargement
+    window.addEventListener('load', createMatrixRain);
+
+    // Recréer au redimensionnement
+    window.addEventListener('resize', () => {
+        const matrixBg = document.getElementById('matrixBg');
+        if (matrixBg) {
+            matrixBg.innerHTML = '';
+            createMatrixRain();
+        }
+    });
+
+    // Gestion du bouton HACK
+    const hackBtn = document.getElementById('hackBtn');
+    let isHacked = false;
+    let hackMode = null; // 'gravity', 'glitch', 'chaos', 'inverted'
+    let hackModes = ['gravity', 'glitch', 'chaos', 'inverted'];
+    let currentModeIndex = -1;
+
+    hackBtn.addEventListener('click', () => {
+        const body = document.body;
+
+        // Retirer tous les effets actuels
+        body.classList.remove('hacked', 'glitch', 'chaos', 'inverted', 'raining');
+
+        if (!isHacked) {
+            // Premier clic - activer le chaos total
+            currentModeIndex = 0;
+            hackMode = hackModes[currentModeIndex];
+
+            // Appliquer tous les effets à la fois pour le chaos maximal
+            body.classList.add('hacked', 'glitch', 'chaos');
+
+            // Effet supplémentaire : rotation aléatoire des éléments
+            document.querySelectorAll('.project-card, .skill-category, .contact-card, .timeline-item').forEach(el => {
+                el.style.setProperty('--rotation', (Math.random() * 20 - 10));
+                el.style.setProperty('--skew', (Math.random() * 10 - 5));
+            });
+
+            hackBtn.textContent = '🔓 DÉSHACKIFIER';
+            hackBtn.style.background = '#ff0055';
+            hackBtn.style.boxShadow = '0 0 30px rgba(255, 0, 85, 0.6)';
+
+            isHacked = true;
+        } else {
+            // Mode cycle à travers les différents effets
+            currentModeIndex = (currentModeIndex + 1) % hackModes.length;
+            hackMode = hackModes[currentModeIndex];
+
+            switch (hackMode) {
+                case 'gravity':
+                    body.classList.add('hacked');
+                    hackBtn.textContent = 'REVERSED 🌀';
+                    break;
+                case 'glitch':
+                    body.classList.add('glitch');
+                    hackBtn.textContent = 'G₁₁₇₇₀H 📡';
+                    break;
+                case 'chaos':
+                    body.classList.add('chaos');
+                    document.querySelectorAll('.project-card, .skill-category, .contact-card, .timeline-item').forEach(el => {
+                        el.style.setProperty('--rotation', (Math.random() * 20 - 10));
+                        el.style.setProperty('--skew', (Math.random() * 10 - 5));
+                    });
+                    hackBtn.textContent = '✨ CHAOS';
+                    break;
+                case 'inverted':
+                    body.classList.add('inverted');
+                    hackBtn.textContent = '◼ INVERTED';
+                    break;
+            }
+
+            // Si on est revenu au mode normal (déshackifié)
+            if (currentModeIndex === -1 || (currentModeIndex === 0 && hackMode !== 'gravity')) {
+                body.classList.remove('hacked', 'glitch', 'chaos', 'inverted');
+                hackBtn.textContent = 'HACK';
+                hackBtn.style.background = 'var(--accent-primary)';
+                hackBtn.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.3)';
+                isHacked = false;
+            }
+        }
+    });
+</script>
 </body>
 </html>
