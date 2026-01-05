@@ -21,6 +21,8 @@
             --text-primary: #e4e4e7;
             --text-secondary: #a1a1aa;
             --border-color: #27293d;
+            --rotation: 0deg;
+            --skew: 0deg;
         }
 
         body {
@@ -514,6 +516,7 @@
             font-size: 1.2rem;
             opacity: 0.6;
             animation: fall linear infinite;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
         }
 
         @keyframes fall {
@@ -737,7 +740,7 @@
 <section class="matrix-transition" id="transition">
     <div class="matrix-bg" id="matrixBg"></div>
     <div class="matrix-container">
-        <div class="matrix-text" id="matrixText">01010101</div>
+        <div class="matrix-text" id="matrixText"></div>
     </div>
 </section>
 
@@ -894,6 +897,19 @@
                 </div>
             </div>
         </a>
+
+        <a href="mangaguessr.html" style="text-decoration: none;">
+            <div class="project-card">
+                <div class="project-type">JEU WEB</div>
+                <h3>MangaGuessr - Plateforme de Jeu Manga</h3>
+                <p>Plateforme interactive permettant aux fans de mangas de tester leurs connaissances sur leurs personnages préférés avec plusieurs modes de jeu captivants.</p>
+                <div class="tags">
+                    <span class="tag">React</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Algorithmes</span>
+                </div>
+            </div>
+        </a>
     </div>
 </section>
 
@@ -993,6 +1009,19 @@
 <button class="hack-btn" id="hackBtn">HACK</button>
 
 <script>
+    // Textes dynamiques pour la transition
+    const hackingTexts = [
+        '01010101',
+        '> ACCESSING SYSTEM',
+        '> ./portfolio',
+        '> LOADING SKILLS',
+        '> INITIALIZING MATRIX',
+        '> SCANNING NETWORK',
+        '> DECRYPTING DATA',
+        '> 00110011',
+        '> WELCOME HACKER'
+    ];
+
     // Générer les chiffres matrix animés
     function createMatrixRain() {
         const matrixBg = document.getElementById('matrixBg');
@@ -1029,8 +1058,47 @@
         matrixBg.appendChild(scanLine);
     }
 
+    // Animer le texte de la transition
+    function animateTransitionText() {
+        const matrixText = document.getElementById('matrixText');
+        if (!matrixText) return;
+
+        let currentIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeText() {
+            const currentText = hackingTexts[currentIndex];
+
+            if (!isDeleting && charIndex < currentText.length) {
+                matrixText.textContent += currentText[charIndex];
+                charIndex++;
+                setTimeout(typeText, 50);
+            } else if (isDeleting && charIndex > 0) {
+                matrixText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(typeText, 30);
+            } else if (!isDeleting) {
+                // Attendre avant de commencer à effacer
+                isDeleting = true;
+                setTimeout(typeText, 1500);
+            } else {
+                // Passer au texte suivant
+                isDeleting = false;
+                charIndex = 0;
+                currentIndex = (currentIndex + 1) % hackingTexts.length;
+                setTimeout(typeText, 500);
+            }
+        }
+
+        typeText();
+    }
+
     // Initialiser au chargement
-    window.addEventListener('load', createMatrixRain);
+    window.addEventListener('load', () => {
+        createMatrixRain();
+        animateTransitionText();
+    });
 
     // Recréer au redimensionnement
     window.addEventListener('resize', () => {
