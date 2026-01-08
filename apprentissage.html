@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compétences DACS - Rafaël Duong</title>
+    <title>Compétences - Rafaël Duong</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* === GLOBAL STYLES (From index.html) === */
+        /* === GLOBAL STYLES === */
         :root {
             --bg-primary: #0a0e27;
             --bg-secondary: #151932;
@@ -24,7 +24,7 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            padding-top: 60px; /* Account for fixed nav */
+            padding-top: 60px;
         }
 
         /* Navigation */
@@ -38,7 +38,6 @@
             z-index: 1000;
             padding: 1rem 0;
         }
-
         nav ul {
             display: flex;
             justify-content: center;
@@ -48,7 +47,6 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
-
         nav a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -57,7 +55,6 @@
             transition: color 0.3s;
             position: relative;
         }
-
         nav a::before {
             content: '>';
             color: var(--accent-primary);
@@ -65,50 +62,55 @@
             margin-right: 0.5rem;
             transition: opacity 0.3s;
         }
+        nav a:hover { color: var(--accent-primary); }
+        nav a:hover::before { opacity: 1; }
 
-        nav a:hover {
-            color: var(--accent-primary);
-        }
-
-        nav a:hover::before {
-            opacity: 1;
-        }
-
-        /* General Typography & Layout */
+        /* General Typography */
         section {
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
+        .section-tag {
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
         .section-title {
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            text-align: center;
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        p {
+        .section-description {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
         }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
         h2, h3, h4 {
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             margin-bottom: 1rem;
             font-weight: 600;
         }
-        ul {
-            list-style: none;
-            padding-left: 1rem;
-        }
+        ul { list-style: none; padding-left: 1rem; }
         li {
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
             position: relative;
+        }
+        li::before {
+            content: '▹';
+            color: var(--accent-primary);
+            position: absolute;
+            left: -1.2rem;
         }
 
         /* Footer */
@@ -121,7 +123,7 @@
             font-size: 0.9rem;
         }
 
-        /* === "Compétences" (apprentissage) Page Specific === */
+        /* Header */
         .skills-header {
             padding: 4rem 2rem;
             text-align: center;
@@ -139,12 +141,104 @@
         }
         .skills-header .subtitle {
             font-size: 1.3rem;
-            color: var(--accent-primary); /* Make it stand out */
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.5rem;
+        }
+        .skills-header .description {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Certifications */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .cert-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .cert-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+        .cert-card:hover::before { transform: scaleX(1); }
+        .cert-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .cert-card h4 {
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .cert-card .cert-date {
+            color: var(--accent-secondary);
+            font-size: 0.8rem;
             font-family: 'JetBrains Mono', monospace;
         }
-        .competences-grid {
+
+        /* Skills Grid */
+        .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .skill-category {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .skill-category:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+        .skill-category h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .skill-list { list-style: none; }
+        .skill-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .skill-list li:last-child { border-bottom: none; }
+        .skill-list li::before {
+            content: '▹';
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            position: static;
+        }
+
+        /* Competences Grid */
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
         .competence-card {
@@ -168,46 +262,76 @@
             color: var(--bg-primary);
             font-family: 'JetBrains Mono', monospace;
         }
-        /* Competence colors */
         .realiser { background: #ff6b6b; }
         .optimiser { background: #ffa726; }
-        .administrer { background: #667eea; } /* Changed from yellow */
+        .administrer { background: #667eea; }
         .gerer { background: #66bb6a; }
-        .conduire { background: var(--accent-primary); } /* Main accent */
-        .collaborer { background: var(--accent-secondary); } /* Second accent */
-
+        .conduire { background: var(--accent-primary); }
+        .collaborer { background: var(--accent-secondary); }
         .competence-info {
             padding: 1.5rem;
             flex-grow: 1;
         }
-        .competence-title { /* h3 */
+        .competence-title {
             font-size: 1.3rem;
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
         .competence-level {
             display: inline-block;
             background: var(--bg-tertiary);
             color: var(--accent-secondary);
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 25px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             border: 1px solid var(--border-color);
             margin-bottom: 1rem;
         }
+        .competence-level.advanced {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+        .competence-details { margin-top: 1rem; }
+        .competence-details p {
+            font-size: 0.9rem;
+            color: var(--accent-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .competence-details ul { margin-top: 0.5rem; }
+        .competence-details li { font-size: 0.9rem; }
+
+        /* Projects Examples */
+        .project-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .project-tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent-secondary);
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        /* DACS Focus */
         .dacs-focus {
             border: 2px solid var(--accent-primary);
             padding: 2rem;
             border-radius: 12px;
-            margin: 3rem auto;
+            margin: 2rem auto;
             max-width: 900px;
             background: var(--bg-secondary);
         }
-        .dacs-title { /* h3 */
+        .dacs-title {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--accent-primary);
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
@@ -215,57 +339,63 @@
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.8rem;
             margin: 1.5rem 0;
             justify-content: center;
         }
         .skill-tag {
             background: rgba(0, 255, 136, 0.1);
             color: var(--accent-primary);
-            padding: 0.7rem 1.2rem;
+            padding: 0.6rem 1rem;
             border-radius: 25px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             border: 1px solid rgba(0, 255, 136, 0.2);
         }
-        .acquisition-card {
+
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .experience-card {
             background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
+            transition: all 0.3s;
         }
-        .acquisition-title { /* h3 */
-            font-size: 1.8rem;
+        .experience-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+        .experience-card h4 {
             color: var(--accent-primary);
-            text-align: center;
             font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.5rem;
         }
-        .acquisition-example {
+        .experience-card .date {
+            color: var(--accent-secondary);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+        .experience-card ul {
             margin-top: 1rem;
-            padding: 1rem;
-            background: var(--bg-tertiary);
-            border-left: 3px solid var(--accent-primary);
-            border-radius: 0 8px 8px 0;
-        }
-        .acquisition-example h4 {
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
         }
 
-        /* === Responsive === */
+        /* Responsive */
         @media (max-width: 768px) {
             body { padding-top: 50px; }
             nav { height: 50px; padding: 0.5rem 0; }
             nav ul { gap: 1.5rem; padding: 0 1rem; }
             nav a { font-size: 0.8rem; }
-            section {
-                padding: 3rem 1rem;
-            }
-            .section-title, .skills-header .title {
-                font-size: 2rem;
-            }
+            section { padding: 3rem 1rem; }
+            .section-title, .skills-header .title { font-size: 2rem; }
+            .skills-header .subtitle { font-size: 1rem; }
+            .competences-grid, .skills-container, .experience-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -273,7 +403,7 @@
 <nav>
     <ul>
         <li><a href="index.html">accueil</a></li>
-        <li><a href="index.html/#projets">projets</a></li>
+        <li><a href="index.html#projets">projets</a></li>
         <li><a href="savoirPlus.html">à propos</a></li>
         <li><a href="apprentissage.html">compétences</a></li>
         <li><a href="contact.html">contact</a></li>
@@ -281,27 +411,232 @@
 </nav>
 
 <header class="skills-header">
-    <h1 class="title">Compétences du parcours DACS</h1>
-    <p class="subtitle">Déploiement d'Applications Communicantes et Sécurisées</p>
+    <h1 class="title">Compétences & Expertise</h1>
+    <p class="subtitle">Pentester en formation • BUT DACS 3ème année</p>
+    <p class="description">
+        Passionné par la cybersécurité offensive, je développe continuellement mes compétences en pentesting,
+        administration système et développement sécurisé à travers mes projets académiques et professionnels.
+    </p>
 </header>
 
+<!-- Section Certifications -->
+<section id="certifications">
+    <div class="section-tag">// CERTIFICATIONS & FORMATIONS</div>
+    <h2 class="section-title">Certifications obtenues</h2>
+    <p class="section-description">
+        Mes certifications attestent de mon engagement dans l'apprentissage continu de la cybersécurité.
+    </p>
+
+    <div class="certifications-grid">
+        <div class="cert-card">
+            <div class="cert-icon">🏆</div>
+            <h4>Introduction to Web Hacking</h4>
+            <p>Première certification PentesterLab validant mes compétences en pentesting web et vulnérabilités OWASP.</p>
+            <span class="cert-date">Octobre 2025</span>
+        </div>
+
+        <div class="cert-card">
+            <div class="cert-icon">🎯</div>
+            <h4>TryHackMe - Jr Penetration Tester</h4>
+            <p>Parcours en cours axé sur les fondamentaux du hacking éthique, Linux, réseaux et Active Directory.</p>
+            <span class="cert-date">En cours</span>
+        </div>
+
+        <div class="cert-card">
+            <div class="cert-icon">🎓</div>
+            <h4>BUT Informatique - Parcours DACS</h4>
+            <p>Déploiement d'Applications Communicantes et Sécurisées. IUT de Montpellier.</p>
+            <span class="cert-date">En cours</span>
+        </div>
+    </div>
+</section>
+
+<!-- Section Compétences Techniques -->
+<section id="skills">
+    <div class="section-tag">// COMPÉTENCES TECHNIQUES</div>
+    <h2 class="section-title">Stack Technique</h2>
+    <p class="section-description">
+        Un aperçu de mes compétences techniques développées à travers mes projets et expériences professionnelles.
+    </p>
+
+    <div class="skills-container">
+        <div class="skill-category">
+            <h3>🔐 Cybersécurité</h3>
+            <ul class="skill-list">
+                <li>Pentesting Web (OWASP Top 10)</li>
+                <li>Analyse de vulnérabilités</li>
+                <li>Cryptographie & Hachage</li>
+                <li>Sécurisation d'applications</li>
+                <li>OSINT & Google Dorking</li>
+                <li>Keyloggers & Malware analysis</li>
+            </ul>
+        </div>
+
+        <div class="skill-category">
+            <h3>🖥️ Administration Système</h3>
+            <ul class="skill-list">
+                <li>Linux (Debian, Ubuntu, Bash)</li>
+                <li>Windows Server & Active Directory</li>
+                <li>GPO & Stratégies de groupe</li>
+                <li>Proxmox & Virtualisation</li>
+                <li>Déploiement de services (Uptime Kuma)</li>
+                <li>Gestion de parc informatique</li>
+            </ul>
+        </div>
+
+        <div class="skill-category">
+            <h3>🌐 Réseaux & Télécoms</h3>
+            <ul class="skill-list">
+                <li>Architecture réseau TCP/IP</li>
+                <li>Configuration routeurs</li>
+                <li>Sockets TCP/IP (C)</li>
+                <li>VPN & Firewall</li>
+                <li>GNS3 & Simulation réseau</li>
+                <li>Support technique</li>
+            </ul>
+        </div>
+
+        <div class="skill-category">
+            <h3>💻 Développement</h3>
+            <ul class="skill-list">
+                <li>Java (POO, Sécurité)</li>
+                <li>C (Programmation système)</li>
+                <li>PHP & Architecture MVC</li>
+                <li>React & TypeScript</li>
+                <li>JavaScript, HTML/CSS</li>
+                <li>MySQL & Bases de données</li>
+            </ul>
+        </div>
+
+        <div class="skill-category">
+            <h3>🛠️ Outils & DevOps</h3>
+            <ul class="skill-list">
+                <li>Git & GitHub</li>
+                <li>WordPress & CMS</li>
+                <li>Docker (bases)</li>
+                <li>VS Code & JetBrains IDE</li>
+                <li>Burp Suite (en apprentissage)</li>
+                <li>Nmap & Metasploit (bases)</li>
+            </ul>
+        </div>
+
+        <div class="skill-category">
+            <h3>🤝 Soft Skills</h3>
+            <ul class="skill-list">
+                <li>Travail en équipe (Hackathons)</li>
+                <li>Gestion de projet (Product Owner)</li>
+                <li>Communication technique</li>
+                <li>Rédaction de documentation</li>
+                <li>Autonomie & Auto-formation</li>
+                <li>Résolution de problèmes</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Section Expériences Pratiques -->
+<section id="experience">
+    <div class="section-tag">// MISE EN PRATIQUE</div>
+    <h2 class="section-title">Expériences & Projets clés</h2>
+    <p class="section-description">
+        Les projets et expériences qui ont forgé mes compétences actuelles.
+    </p>
+
+    <div class="experience-grid">
+        <div class="experience-card">
+            <h4>🏢 Alternance - Perfectys Télécom</h4>
+            <span class="date">Sept 2025 - Présent</span>
+            <p>Développeur & Admin Système dans une entreprise de télécommunications.</p>
+            <ul>
+                <li>Migration de sites web vers WordPress</li>
+                <li>Déploiement Uptime Kuma via Proxmox</li>
+                <li>Gestion de routeurs & support technique</li>
+                <li>Référencement SEO</li>
+            </ul>
+        </div>
+
+        <div class="experience-card">
+            <h4>🏫 Stage - Lycée Pierre Mendès France</h4>
+            <span class="date">Jan - Avr 2025</span>
+            <p>Administration réseau et infrastructure informatique.</p>
+            <ul>
+                <li>Gestion Active Directory</li>
+                <li>Déploiement d'images système</li>
+                <li>Configuration GPO</li>
+                <li>Optimisation infrastructure réseau</li>
+            </ul>
+        </div>
+
+        <div class="experience-card">
+            <h4>🗳️ Votelia - Vote Électronique Sécurisé</h4>
+            <span class="date">Sept - Nov 2024</span>
+            <p>Système de vote avec cryptographie avancée. Rôle : Code Crypto & Product Owner.</p>
+            <ul>
+                <li>Implémentation chiffrement SSL/TLS</li>
+                <li>Hachage sécurisé des données</li>
+                <li>Authentification multi-facteurs</li>
+                <li>Gestion de projet Agile</li>
+            </ul>
+        </div>
+
+        <div class="experience-card">
+            <h4>🏆 Aquapulse - Nuit de l'Info 2024</h4>
+            <span class="date">Décembre 2024</span>
+            <p>Victoire au défi national ! Développement d'une plateforme web en 24h.</p>
+            <ul>
+                <li>Travail d'équipe intensif</li>
+                <li>Développement rapide JavaScript</li>
+                <li>Innovation & créativité</li>
+                <li>Gestion du stress</li>
+            </ul>
+        </div>
+
+        <div class="experience-card">
+            <h4>🐧 Keylogger Linux</h4>
+            <span class="date">Janvier 2026</span>
+            <p>Système distribué de capture de frappes clavier (projet éducatif BUT 3).</p>
+            <ul>
+                <li>Programmation système C</li>
+                <li>API Linux Input (/dev/input)</li>
+                <li>Sockets TCP/IP</li>
+                <li>Scripts Bash & Crontab</li>
+            </ul>
+        </div>
+
+        <div class="experience-card">
+            <h4>🎮 MangaGuessr</h4>
+            <span class="date">Projet personnel</span>
+            <p>Plateforme de jeu web pour fans de mangas avec plusieurs modes.</p>
+            <ul>
+                <li>React & TypeScript</li>
+                <li>Algorithmes de comparaison</li>
+                <li>Gestion de données complexes</li>
+                <li>Design responsive</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Section Compétences BUT -->
 <section id="competences">
-    <h2 class="section-title">Les compétences du BUT Informatique</h2>
+    <div class="section-tag">// RÉFÉRENTIEL BUT</div>
+    <h2 class="section-title">Compétences du BUT Informatique</h2>
+    <p class="section-description">
+        Mon niveau d'acquisition des 6 compétences du référentiel BUT Informatique, mis à jour avec mes expériences récentes.
+    </p>
+
     <div class="competences-grid">
         <div class="competence-card">
             <div class="competence-header realiser">Compétence 1</div>
             <div class="competence-info">
                 <h3 class="competence-title">Réaliser un développement d'application</h3>
-                <span class="competence-level">Niveau 1 - Acquis ++</span>
-                <p>Développer, concevoir, coder, tester et intégrer une solution informatique pour un client en respectant les besoins décrits et en appliquant les principes algorithmiques.</p>
-                <div class="competence-details">
-                    <p>Apprentissages critiques :</p>
-                    <ul>
-                        <li>Implémenter des conceptions simples</li>
-                        <li>Élaborer des conceptions simples</li>
-                        <li>Faire des essais et évaluer leurs résultats</li>
-                        <li>Développer des interfaces utilisateurs</li>
-                    </ul>
+                <span class="competence-level advanced">Niveau 2 - Maîtrisé</span>
+                <p>Développer des solutions informatiques complètes en respectant les besoins clients.</p>
+                <div class="project-examples">
+                    <span class="project-tag">Votelia</span>
+                    <span class="project-tag">KawaiiToys</span>
+                    <span class="project-tag">MangaGuessr</span>
+                    <span class="project-tag">Keylogger</span>
                 </div>
             </div>
         </div>
@@ -310,15 +645,11 @@
             <div class="competence-header optimiser">Compétence 2</div>
             <div class="competence-info">
                 <h3 class="competence-title">Optimiser des applications</h3>
-                <span class="competence-level">Niveau 1 - Acquis +</span>
-                <p>Proposer des applications informatiques optimisées en fonction de critères spécifiques (temps d'exécution, précision, consommation de ressources).</p>
-                <div class="competence-details">
-                    <p>Apprentissages critiques :</p>
-                    <ul>
-                        <li>Analyser un problème avec méthode</li>
-                        <li>Comparer des algorithmes pour des problèmes classiques</li>
-                        <li>Formaliser et mettre en œuvre des outils mathématiques</li>
-                    </ul>
+                <span class="competence-level advanced">Niveau 2 - Acquis</span>
+                <p>Proposer des applications optimisées en fonction de critères spécifiques.</p>
+                <div class="project-examples">
+                    <span class="project-tag">Algorithmes MangaGuessr</span>
+                    <span class="project-tag">Keylogger performance</span>
                 </div>
             </div>
         </div>
@@ -327,16 +658,13 @@
             <div class="competence-header administrer">Compétence 3</div>
             <div class="competence-info">
                 <h3 class="competence-title">Administrer des systèmes informatiques</h3>
-                <span class="competence-level">Niveau 1 - Acquis -</span>
-                <p>Installer, configurer, mettre à disposition et maintenir en conditions opérationnelles des infrastructures, des services et des réseaux.</p>
-                <div class="competence-details">
-                    <p>Apprentissages critiques :</p>
-                    <ul>
-                        <li>Identifier les composants d'un système numérique</li>
-                        <li>Utiliser les fonctionnalités d'un système multi-tâches</li>
-                        <li>Installer et configurer un système d'exploitation</li>
-                        <li>Configurer un poste de travail dans un réseau d'entreprise</li>
-                    </ul>
+                <span class="competence-level advanced">Niveau 2 - Maîtrisé</span>
+                <p>Installer, configurer et maintenir des infrastructures et services.</p>
+                <div class="project-examples">
+                    <span class="project-tag">Stage LPMF</span>
+                    <span class="project-tag">Alternance Perfectys</span>
+                    <span class="project-tag">TryHackMe</span>
+                    <span class="project-tag">Proxmox</span>
                 </div>
             </div>
         </div>
@@ -345,15 +673,11 @@
             <div class="competence-header gerer">Compétence 4</div>
             <div class="competence-info">
                 <h3 class="competence-title">Gérer des données de l'information</h3>
-                <span class="competence-level">Niveau 1 - Acquis</span>
-                <p>Concevoir, gérer, administrer et exploiter les données de l'entreprise pour mettre à disposition les informations nécessaires.</p>
-                <div class="competence-details">
-                    <p>Apprentissages critiques :</p>
-                    <ul>
-                        <li>Mettre à jour et interroger une base de données relationnelle</li>
-                        <li>Visualiser des données</li>
-                        <li>Concevoir une base de données relationnelle</li>
-                    </ul>
+                <span class="competence-level">Niveau 2 - Acquis</span>
+                <p>Concevoir, gérer et exploiter les données de manière sécurisée.</p>
+                <div class="project-examples">
+                    <span class="project-tag">Votelia (crypto)</span>
+                    <span class="project-tag">KawaiiToys (MySQL)</span>
                 </div>
             </div>
         </div>
@@ -362,15 +686,11 @@
             <div class="competence-header conduire">Compétence 5</div>
             <div class="competence-info">
                 <h3 class="competence-title">Conduire un projet</h3>
-                <span class="competence-level">Niveau 1 - Acquis</span>
-                <p>Satisfaire les besoins des utilisateurs, organiser et piloter un projet informatique avec des méthodes classiques ou agiles.</p>
-                <div class="competence-details">
-                    <p>Apprentissages critiques :</p>
-                    <ul>
-                        <li>Appréhender les besoins du client et de l'utilisateur</li>
-                        <li>Mettre en place les outils de gestion de projet</li>
-                        <li>Identifier les acteurs et les phases d'un cycle de développement</li>
-                    </ul>
+                <span class="competence-level advanced">Niveau 2 - Maîtrisé</span>
+                <p>Organiser et piloter un projet informatique avec méthodes agiles.</p>
+                <div class="project-examples">
+                    <span class="project-tag">Product Owner Votelia</span>
+                    <span class="project-tag">Nuit de l'Info</span>
                 </div>
             </div>
         </div>
@@ -379,124 +699,42 @@
             <div class="competence-header collaborer">Compétence 6</div>
             <div class="competence-info">
                 <h3 class="competence-title">Collaborer au sein d'une équipe</h3>
-                <span class="competence-level">Niveau 1 - Acquis</span>
-                <p>Acquérir, développer et exploiter les aptitudes nécessaires pour travailler efficacement dans une équipe informatique.</p>
-                <div class="competence-details">
-                    <p>Apprentissages critiques :</p>
-                    <ul>
-                        <li>Appréhender l'écosystème numérique</li>
-                        <li>Découvrir les aptitudes requises selon les secteurs</li>
-                        <li>Identifier les statuts, fonctions et rôles d'une équipe</li>
-                        <li>Acquérir les compétences interpersonnelles</li>
-                    </ul>
+                <span class="competence-level advanced">Niveau 2 - Maîtrisé</span>
+                <p>Travailler efficacement dans une équipe informatique.</p>
+                <div class="project-examples">
+                    <span class="project-tag">Nuit de l'Info 2024</span>
+                    <span class="project-tag">Keylogger (3 devs)</span>
+                    <span class="project-tag">Alternance</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Section Parcours DACS -->
 <section id="dacs">
-    <h2 class="section-title">Parcours DACS</h2>
     <div class="dacs-focus">
-        <h3 class="dacs-title">Déploiement d'Applications Communicantes et Sécurisées</h3>
-        <p>Le parcours DACS se concentre sur trois compétences principales de niveau 2 :</p>
+        <h3 class="dacs-title">🎯 Parcours DACS</h3>
+        <p style="text-align: center; margin-bottom: 1.5rem;">
+            <strong>Déploiement d'Applications Communicantes et Sécurisées</strong><br>
+            Ma spécialisation en cybersécurité et administration système.
+        </p>
 
-        <div class="competences-grid" style="margin-top: 2rem;">
-            <div class="competence-card">
-                <div class="competence-header optimiser" style="color: var(--text-primary);">Niveau 2</div>
-                <div class="competence-info">
-                    <h3 class="competence-title">Optimiser</h3>
-                    <p>Sélectionner les algorithmes adéquats pour répondre à un problème donné</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Analyse d'algorithmes</span>
-                        <span class="skill-tag">Complexité</span>
-                        <span class="skill-tag">Optimisation</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="competence-card">
-                <div class="competence-header administrer">Niveau 2</div>
-                <div class="competence-info">
-                    <h3 class="competence-title">Administrer</h3>
-                    <p>Déployer des services dans une architecture réseau</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Réseaux</span>
-                        <span class="skill-tag">Sécurité</span>
-                        <span class="skill-tag">Systèmes</span>
-                        <span class="skill-tag">Infrastructure</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="competence-card">
-                <div class="competence-header gerer">Niveau 2</div>
-                <div class="competence-info">
-                    <h3 class="competence-title">Gérer</h3>
-                    <p>Optimiser une base de données, interagir avec une application et mettre en œuvre la sécurité</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Bases de données</span>
-                        <span class="skill-tag">Sécurité des données</span>
-                        <span class="skill-tag">Optimisation</span>
-                    </div>
-                </div>
-            </div>
+        <div class="skill-tags">
+            <span class="skill-tag">Pentesting</span>
+            <span class="skill-tag">Sécurité Réseau</span>
+            <span class="skill-tag">Cryptographie</span>
+            <span class="skill-tag">Administration Linux</span>
+            <span class="skill-tag">Active Directory</span>
+            <span class="skill-tag">Analyse de vulnérabilités</span>
+            <span class="skill-tag">OWASP Top 10</span>
+            <span class="skill-tag">Sockets TCP/IP</span>
         </div>
 
-        <p style="margin-top: 2rem;">Ce parcours est idéal pour ceux qui s'intéressent particulièrement à la cybersécurité, aux infrastructures réseau et à l'optimisation des systèmes informatiques.</p>
-    </div>
-</section>
-
-<section id="acquisition">
-    <h2 class="section-title">Acquisition des compétences</h2>
-
-    <div class="acquisition-card">
-        <h3 class="acquisition-title">Pourquoi le parcours DACS ?</h3>
-        <p>Mon choix du parcours DACS est motivé par ma fascination pour l'univers de la cybersécurité et mon intérêt pour les défis techniques qu'il présente. Malgré la perception de difficulté associée à cette voie, le soutien de mon entourage m'a encouragé à relever ce défi.</p>
-        <p>La découverte des aspects pratiques comme la mise en place d'une pile LAMP au second semestre a confirmé mon attrait pour ce domaine. Pouvoir présenter des projets concrets et impressionnants à mon entourage a été particulièrement gratifiant.</p>
-    </div>
-
-    <div class="acquisition-card">
-        <h3 class="acquisition-title">Compétence 3 : Administrer des systèmes</h3>
-        <p>Bien que cette compétence soit encore en développement, j'ai pu faire de réels progrès à travers des projets concrets :</p>
-        <div class="acquisition-example">
-            <h4>Dual Boot Ubuntu et Windows</h4>
-            <p>Lors de ma première SAE, j'ai installé un système en dual boot, me permettant d'utiliser à la fois Ubuntu et Windows sur la même machine. Cette expérience m'a initié à la configuration de systèmes d'exploitation.</p>
-        </div>
-        <div class="acquisition-example">
-            <h4>Configuration réseau local</h4>
-            <p>À travers plusieurs travaux dirigés, j'ai appris à configurer un réseau local virtuel en utilisant le logiciel GNS3, élargissant ainsi mes connaissances techniques dans le domaine des réseaux.</p>
-        </div>
-    </div>
-
-    <div class="acquisition-card">
-        <h3 class="acquisition-title">Points forts dans la perspective DACS</h3>
-        <p>Mes compétences actuelles qui seront des atouts pour le parcours DACS :</p>
-        <div class="acquisition-example">
-            <h4>Compétence 1 : Réaliser un développement d'application</h4>
-            <p>Ma logique affinée me permet de concevoir rapidement des applications et de comprendre l'impact de la complexité des algorithmes. J'ai développé une approche systématique qui me permet d'optimiser efficacement mes réalisations.</p>
-        </div>
-        <div class="acquisition-example">
-            <h4>Compétence 6 : Collaborer au sein d'une équipe</h4>
-            <p>Grâce à ma participation à des événements comme la Nuit de l'Info 2023 et la Code Game Jam 2024, j'ai développé une grande flexibilité dans ma méthode de travail et des compétences solides en collaboration d'équipe.</p>
-        </div>
-    </div>
-
-    <div class="acquisition-card">
-        <h3 class="acquisition-title">Objectifs pour renforcer mes compétences DACS</h3>
-        <p>Pour réussir dans le parcours DACS, je dois concentrer mes efforts sur les domaines suivants :</p>
-        <div class="acquisition-example">
-            <h4>Améliorer ma maîtrise des réseaux</h4>
-            <p>Je vais approfondir mes connaissances en configuration de réseaux et en protocoles de communication pour atteindre le niveau 2 de la compétence "Administrer".</p>
-        </div>
-        <div class="acquisition-example">
-            <h4>Renforcer mes compétences en sécurité informatique</h4>
-            <p>Je souhaite développer ma compréhension des concepts de sécurité pour pouvoir mettre en œuvre des solutions robustes dans les applications et systèmes.</p>
-        </div>
-        <div class="acquisition-example">
-            <h4>Optimiser les performances des applications</h4>
-            <p>Je vais approfondir mes connaissances en algorithmes et structures de données pour améliorer l'efficacité des applications que je développe.</p>
-        </div>
+        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-secondary);">
+            Mon objectif : devenir <strong style="color: var(--accent-primary);">Pentester professionnel</strong>
+            en combinant mes compétences en développement sécurisé et en tests d'intrusion.
+        </p>
     </div>
 </section>
 

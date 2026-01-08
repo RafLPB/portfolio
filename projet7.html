@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet - Keylogger Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* === GLOBAL STYLES (From index.html) === */
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151932;
+            --bg-tertiary: #1e2338;
+            --accent-primary: #00ff88;
+            --accent-secondary: #00d4ff;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --border-color: #27293d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 60px; /* Account for fixed nav */
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        nav a::before {
+            content: '>';
+            color: var(--accent-primary);
+            opacity: 0;
+            margin-right: 0.5rem;
+            transition: opacity 0.3s;
+        }
+        nav a:hover { color: var(--accent-primary); }
+        nav a:hover::before { opacity: 1; }
+
+        /* General Typography & Layout */
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        h2, h3, h4 {
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; }
+        ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        li::before {
+            content: '▹';
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -1.2rem;
+            top: 0;
+        }
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            text-decoration: none;
+        }
+
+        /* Tags */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* === PROJECT PAGE SPECIFIC === */
+        .project-page {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .project-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+        .back-btn {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-btn:hover {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+        .project-header .section-title {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .project-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 3rem;
+        }
+        .project-main {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .project-description h2 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .project-description h3 { /* Override default h3 */
+            font-size: 1.3rem;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 2rem;
+        }
+        .project-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .project-gallery img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .project-details {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            height: fit-content; /* Stick to top */
+        }
+        .project-details h3 { /* Override default h3 */
+            font-size: 1.3rem;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+        .project-details ul {
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        .project-details li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .project-details li::before {
+            content: '▹';
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .project-details strong {
+            color: var(--text-primary);
+        }
+
+        /* Architecture Diagram */
+        .architecture-diagram {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre;
+            color: var(--text-secondary);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            color: var(--accent-secondary);
+        }
+
+        /* Table Styles */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .tech-table th, .tech-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        .tech-table th {
+            background: var(--bg-tertiary);
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .tech-table td {
+            color: var(--text-secondary);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            color: #ff6b6b;
+        }
+        .warning-box strong {
+            color: #ff6b6b;
+        }
+
+        /* === Responsive === */
+        @media (max-width: 900px) {
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+            .project-details {
+                order: -1; /* Move details to top on mobile */
+            }
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 50px; }
+            nav { height: 50px; padding: 0.5rem 0; }
+            nav ul { gap: 1.5rem; padding: 0 1rem; }
+            nav a { font-size: 0.8rem; }
+            .project-page {
+                padding: 3rem 1rem;
+            }
+            .project-header .section-title {
+                font-size: 2rem;
+            }
+            .project-gallery {
+                grid-template-columns: 1fr;
+            }
+            .architecture-diagram {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">accueil</a></li>
+        <li><a href="index.html#projets">projets</a></li>
+        <li><a href="savoirPlus.html">à propos</a></li>
+        <li><a href="apprentissage.html">compétences</a></li>
+        <li><a href="contact.html">contact</a></li>
+    </ul>
+</nav>
+
+<div class="project-page">
+    <div class="project-header">
+        <a href="index.html#projets" class="back-btn">&lt; Retour aux projets</a>
+        <h1 class="section-title">Keylogger Linux</h1>
+    </div>
+
+    <div class="project-content">
+        <div class="project-main">
+            <div class="project-description">
+                <h2>Description du projet</h2>
+                <p>
+                    Ce projet implémente un système complet de <strong>capture et transmission de frappes clavier</strong> (keylogger) en environnement Linux.
+                    Il s'agit d'un système distribué composé de trois modules indépendants qui communiquent via le réseau TCP/IP.
+                </p>
+                <p>
+                    <strong>Contexte</strong> : Projet réalisé dans le cadre du BUT 3, ce système permet de comprendre les mécanismes
+                    de bas niveau des systèmes Linux, notamment l'accès aux périphériques d'entrée et la programmation réseau.
+                </p>
+
+                <div class="warning-box">
+                    <strong>⚠️ Avertissement :</strong> L'utilisation d'un keylogger sans le consentement explicite de l'utilisateur est ILLÉGALE dans la plupart des pays.
+                    Ce projet est réalisé dans un cadre éducatif uniquement.
+                </div>
+
+                <h3>Architecture du système</h3>
+                <div class="architecture-diagram">┌─────────────────────────────────────────────────────────────────────┐
+│                        MACHINE CIBLE (Linux)                        │
+│  ┌─────────────────┐                      ┌─────────────────┐       │
+│  │   KEYLOGGER     │  ─────écriture────▶  │   Fichier Log   │       │
+│  │   (key.c)       │                      │   (.conf)       │       │
+│  └─────────────────┘                      └────────┬────────┘       │
+│         ▲                                          │                │
+│         │ Lecture périphérique                     │ Lecture        │
+│  ┌──────┴───────┐                         ┌────────▼────────┐       │
+│  │ /dev/input/  │                         │     CLIENT      │       │
+│  │   event3     │                         │   (client.c)    │       │
+│  └──────────────┘                         └────────┬────────┘       │
+└─────────────────────────────────────────────────────┼───────────────┘
+                                                      │ TCP Port 5001
+                                                      ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                      MACHINE SERVEUR                                │
+│  ┌─────────────────┐                      ┌─────────────────┐       │
+│  │    SERVEUR      │  ─────écriture────▶  │   Dossier logs/ │       │
+│  │   (serv.c)      │                      │   (horodatés)   │       │
+│  └─────────────────┘                      └─────────────────┘       │
+└─────────────────────────────────────────────────────────────────────┘</div>
+
+                <h3>Technologies utilisées</h3>
+                <table class="tech-table">
+                    <tr>
+                        <th>Technologie</th>
+                        <th>Utilisation</th>
+                    </tr>
+                    <tr>
+                        <td>Langage C</td>
+                        <td>Programmation bas niveau pour accès aux périphériques</td>
+                    </tr>
+                    <tr>
+                        <td>API Linux Input</td>
+                        <td>Capture des événements clavier via /dev/input/</td>
+                    </tr>
+                    <tr>
+                        <td>Sockets TCP/IP</td>
+                        <td>Communication réseau client-serveur</td>
+                    </tr>
+                    <tr>
+                        <td>Bash Scripting</td>
+                        <td>Automatisation et orchestration</td>
+                    </tr>
+                    <tr>
+                        <td>Crontab</td>
+                        <td>Persistance au démarrage</td>
+                    </tr>
+                </table>
+
+                <h3>Composants du système</h3>
+                <p><strong>1. Keylogger (key.c)</strong></p>
+                <p>
+                    Le cœur du système qui intercepte toutes les frappes clavier au niveau du système d'exploitation Linux
+                    en lisant directement les événements du périphérique d'entrée <code>/dev/input/event3</code>.
+                </p>
+                <ul>
+                    <li>Gestion complète du clavier AZERTY français avec 3 mappings (normal, Shift, AltGr)</li>
+                    <li>Horodatage intelligent après 10 secondes d'inactivité</li>
+                    <li>Gestion en temps réel des touches modificatrices</li>
+                </ul>
+
+                <p><strong>2. Client (client.c)</strong></p>
+                <p>
+                    Responsable de l'envoi périodique du fichier de log vers le serveur distant via une connexion TCP.
+                    Transmet les données par blocs de 1024 octets toutes les 60 secondes.
+                </p>
+
+                <p><strong>3. Serveur (serv.c)</strong></p>
+                <p>
+                    Écoute les connexions entrantes sur le port 5001 et archive chaque transmission dans un fichier
+                    distinct horodaté dans le dossier <code>logs/</code>.
+                </p>
+
+                <h3>Défis techniques relevés</h3>
+                <p>
+                    <strong>1. Accès bas niveau au clavier Linux</strong> :
+                    <br>
+                    <em>Défi</em> : Accéder aux périphériques d'entrée nécessite des privilèges root et une compréhension de l'API Input.
+                    <br>
+                    <em>Solution</em> : Utilisation de <code>/dev/input/eventX</code> avec la structure <code>input_event</code> de <code>&lt;linux/input.h&gt;</code>.
+                </p>
+
+                <p>
+                    <strong>2. Mapping complet du clavier AZERTY</strong> :
+                    <br>
+                    <em>Défi</em> : Le kernel Linux renvoie des codes de touches basés sur le layout QWERTY américain.
+                    <br>
+                    <em>Solution</em> : Création de 3 tables de mapping (156+ entrées) pour les touches normales, Shift et AltGr.
+                </p>
+
+                <p>
+                    <strong>3. Gestion des modificateurs en temps réel</strong> :
+                    <br>
+                    <em>Défi</em> : Tracker l'état des touches Shift et AltGr (pressé/relâché).
+                    <br>
+                    <em>Solution</em> : Variables d'état mises à jour à chaque événement clavier.
+                </p>
+
+                <p>
+                    <strong>4. Communication réseau fiable</strong> :
+                    <br>
+                    <em>Défi</em> : Transmettre un fichier de taille variable de manière fiable via TCP.
+                    <br>
+                    <em>Solution</em> : Lecture par blocs de 1024 octets avec gestion des erreurs et reconnexion automatique.
+                </p>
+
+                <p>
+                    <strong>5. Persistance et discrétion</strong> :
+                    <br>
+                    <em>Défi</em> : Le système doit survivre aux redémarrages et être difficile à détecter.
+                    <br>
+                    <em>Solution</em> : Utilisation de Crontab (@reboot), nom d'exécutable obfusqué, emplacement discret dans <code>/etc/apache2/conf-available/</code>.
+                </p>
+
+                <h3>Compétences acquises</h3>
+                <ul>
+                    <li><strong>Programmation système Linux :</strong> Accès direct aux périphériques via l'API Input, gestion des événements bas niveau.</li>
+                    <li><strong>Programmation réseau :</strong> Implémentation de sockets TCP/IP pour la communication client-serveur.</li>
+                    <li><strong>Automatisation :</strong> Scripts Bash pour l'orchestration et utilisation de Crontab pour la persistance.</li>
+                    <li><strong>Sécurité informatique :</strong> Compréhension approfondie des menaces et techniques d'intrusion.</li>
+                    <li><strong>Gestion de projets :</strong> Développement d'un système complet multi-composants avec documentation technique.</li>
+                    <li><strong>Travail en équipe :</strong> Collaboration avec les co-équipiers sur un projet technique complexe.</li>
+                </ul>
+
+                <h3>Considérations éthiques</h3>
+                <table class="tech-table">
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Implémentation</th>
+                        <th>Risque potentiel</th>
+                    </tr>
+                    <tr>
+                        <td>Privilèges root</td>
+                        <td>Nécessaire pour /dev/input/</td>
+                        <td>Compromission système</td>
+                    </tr>
+                    <tr>
+                        <td>Communication TCP</td>
+                        <td>Non chiffrée (port 5001)</td>
+                        <td>Interception réseau</td>
+                    </tr>
+                    <tr>
+                        <td>Stockage local</td>
+                        <td>Fichier texte en clair</td>
+                        <td>Lecture par tiers</td>
+                    </tr>
+                    <tr>
+                        <td>Persistance</td>
+                        <td>Crontab modifiée</td>
+                        <td>Détection par audit</td>
+                    </tr>
+                </table>
+
+                <h3>Impact pédagogique</h3>
+                <p>
+                    Ce projet illustre les principes fondamentaux de la programmation système Linux, de la programmation réseau,
+                    de l'automatisation et de la sécurité informatique. Il démontre la complexité technique nécessaire pour
+                    implémenter un keylogger fonctionnel tout en soulignant l'importance cruciale de l'éthique et de la légalité
+                    dans le domaine de la sécurité informatique.
+                </p>
+            </div>
+        </div>
+
+        <div class="project-details">
+            <h3>Détails du projet</h3>
+            <ul>
+                <li><strong>Date :</strong> Janvier 2026</li>
+                <li><strong>Contexte :</strong> Projet BUT 3</li>
+                <li><strong>Équipe :</strong> Rayane Cathelin, Rafael Duong, Lilian Martin</li>
+            </ul>
+            <h3>Technologies utilisées</h3>
+            <div class="skills">
+                <span class="skill-tag">C</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">Sockets TCP/IP</span>
+                <span class="skill-tag">Bash</span>
+                <span class="skill-tag">Crontab</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Rafaël Duong. Tous droits réservés.</p>
+</footer>
+</body>
+</html>
+

@@ -212,7 +212,7 @@
         }
         .project-gallery {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin-bottom: 2rem;
         }
@@ -220,6 +220,49 @@
             width: 100%;
             border-radius: 8px;
             border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Lightbox / Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            transition: color 0.3s;
+        }
+        .lightbox-close:hover {
+            color: var(--accent-primary);
         }
         .project-details {
             background: var(--bg-secondary);
@@ -321,6 +364,11 @@
 
     <div class="project-content">
         <div class="project-main">
+            <div class="project-gallery">
+                <img src="ressource/img/mangaguessr1.PNG" alt="Screenshot MangaGuessr - Accueil">
+                <img src="ressource/img/mangaguessr2.PNG" alt="Screenshot MangaGuessr - Mode de jeu">
+                <img src="ressource/img/mangaguessr3.PNG" alt="Screenshot MangaGuessr - Gameplay">
+            </div>
             <div class="project-description">
                 <h2>Description du projet</h2>
                 <p>
@@ -509,6 +557,38 @@
 <footer>
     <p>&copy; 2025 Rafaël Duong. Tous droits réservés.</p>
 </footer>
+
+<!-- Lightbox pour zoom image -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Image zoomée" id="lightbox-img">
+</div>
+
+<script>
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const galleryImages = document.querySelectorAll('.project-gallery img');
+
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+        });
+    });
+
+    lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+    });
+
+    // Fermer avec la touche Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            lightbox.classList.remove('active');
+        }
+    });
+</script>
 </body>
 </html>
 

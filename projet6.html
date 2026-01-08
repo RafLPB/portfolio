@@ -237,6 +237,22 @@
         }
         .highlight-box h4 { margin-top: 0; color: var(--accent-secondary); }
 
+        /* TryHackMe Badge */
+        .badge-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .thm-badge {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .thm-badge:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .project-content { grid-template-columns: 1fr; }
@@ -347,6 +363,10 @@
         </div>
 
         <div class="project-details">
+            <h3>Mon Badge TryHackMe</h3>
+            <div class="badge-container">
+                <img src="https://tryhackme-badges.s3.amazonaws.com/raf.duong.png" alt="TryHackMe Badge" class="thm-badge" />
+            </div>
             <h3>Détails du module</h3>
             <ul>
                 <li><strong>Plateforme:</strong> TryHackMe</li>
